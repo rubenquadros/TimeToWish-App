@@ -1,0 +1,11 @@
+<resources>
+	<string-array name="tw_week_days">
+		<item>Sun</item>
+		<item>Mon</item>
+		<item>Tue</item>
+		<item>Wed</item>
+		<item>Thu</item>
+		<item>Fri</item>
+		<item>Sat</item>
+	</string-array>
+</resources>
