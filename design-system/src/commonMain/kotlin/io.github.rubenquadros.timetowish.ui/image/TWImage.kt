@@ -31,18 +31,34 @@ fun TWImage(
         return
     }
 
-    AsyncImage(
-        model = getImageModel(imageReference),
-        modifier = modifier,
-        contentDescription = accessibilityLabel,
-        contentScale = contentScale,
-        colorFilter = tint?.let {
-            ColorFilter.tint(color = tint)
-        },
-        error = getFallback(imageReference)?.let {
-            painterResource(it)
+    when (imageReference) {
+        is ImageReference.ResImage -> {
+            Image(
+                modifier = modifier,
+                painter = painterResource(getImageModel(imageReference) as DrawableResource),
+                contentDescription = accessibilityLabel,
+                contentScale = contentScale,
+                colorFilter = tint?.let {
+                    ColorFilter.tint(color = tint)
+                },
+            )
         }
-    )
+
+        else -> {
+            AsyncImage(
+                modifier = modifier,
+                model = getImageModel(imageReference),
+                contentDescription = accessibilityLabel,
+                contentScale = contentScale,
+                colorFilter = tint?.let {
+                    ColorFilter.tint(color = tint)
+                },
+                error = getFallback(imageReference)?.let {
+                    painterResource(it)
+                }
+            )
+        }
+    }
 }
 
 private fun getImageModel(imageReference: ImageReference): Any {

@@ -185,7 +185,7 @@ private fun getButtonColors(variant: TWButton.Variant): ButtonColors {
 
         TWButton.Variant.Secondary -> {
             ButtonColors(
-                containerColor = Color.Transparent,
+                containerColor = TWTheme.colors.transparent,
                 contentColor = TWTheme.colors.primary,
                 disabledContainerColor = TWTheme.colors.disabledVariant,
                 disabledContentColor = TWTheme.colors.onDisabled
@@ -194,27 +194,27 @@ private fun getButtonColors(variant: TWButton.Variant): ButtonColors {
 
         TWButton.Variant.Tertiary -> {
             ButtonColors(
-                containerColor = Color.Transparent,
+                containerColor = TWTheme.colors.transparent,
                 contentColor = TWTheme.colors.primary,
-                disabledContainerColor = Color.Transparent,
+                disabledContainerColor = TWTheme.colors.transparent,
                 disabledContentColor = TWTheme.colors.onDisabled
             )
         }
 
         is TWButton.Variant.TertiaryTinted -> {
             ButtonColors(
-                containerColor = Color.Transparent,
+                containerColor = TWTheme.colors.transparent,
                 contentColor = variant.color,
-                disabledContainerColor = Color.Transparent,
+                disabledContainerColor = TWTheme.colors.transparent,
                 disabledContentColor = TWTheme.colors.onDisabled
             )
         }
 
         TWButton.Variant.Elevated -> {
             ButtonColors(
-                containerColor = Color.Transparent,
+                containerColor = TWTheme.colors.transparent,
                 contentColor = TWTheme.colors.primary,
-                disabledContainerColor = Color.Transparent,
+                disabledContainerColor = TWTheme.colors.transparent,
                 disabledContentColor = TWTheme.colors.onDisabled
             )
         }
@@ -226,11 +226,11 @@ private fun getButtonElevation(variant: TWButton.Variant): ButtonElevation {
     return when (variant) {
         TWButton.Variant.Elevated -> {
             ButtonDefaults.buttonElevation(
-                defaultElevation = TWTheme.elevations.level2,
-                pressedElevation = TWTheme.elevations.level2,
-                focusedElevation = TWTheme.elevations.level2,
-                hoveredElevation = TWTheme.elevations.level2,
-                disabledElevation = TWTheme.elevations.level2
+                defaultElevation = TWTheme.elevations.level1,
+                pressedElevation = TWTheme.elevations.level1,
+                focusedElevation = TWTheme.elevations.level1,
+                hoveredElevation = TWTheme.elevations.level1,
+                disabledElevation = TWTheme.elevations.level1
             )
         }
 

@@ -1,4 +1,4 @@
-package io.github.rubenquadros.timetowish.ui.image
+package io.github.rubenquadros.timetowish.core.imageLoader
 
 import coil3.ImageLoader
 import coil3.PlatformContext

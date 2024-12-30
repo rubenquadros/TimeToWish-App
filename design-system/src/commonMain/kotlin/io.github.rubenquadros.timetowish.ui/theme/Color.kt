@@ -28,6 +28,7 @@ data class TWColors(
     val surface: Color,
     val surfaceContainer: Color,
     val onSurface: Color,
+    val onSurfaceVariant: Color,
     val outline: Color,
     val transparent: Color
 )
@@ -55,8 +56,9 @@ internal val TWLightColorScheme = TWColors(
     surface = Color(0xFFFFF8F7),
     surfaceContainer = Color(0xFFFCEAE9),
     onSurface = Color(0xFF221919),
+    onSurfaceVariant = Color(0xFFF4DDDC),
     outline = Color(0xFF857372),
-    transparent = Color.Transparent
+    transparent = Color.Transparent,
 )
 
 internal val TWDarkColorScheme = TWColors(
@@ -82,6 +84,7 @@ internal val TWDarkColorScheme = TWColors(
     surface = Color(0xFF1A1111),
     surfaceContainer = Color(0xFF271D1D),
     onSurface = Color(0xFFF0DEDE),
+    onSurfaceVariant = Color(0xFFD7C1C1),
     outline = Color(0xFFA08C8C),
     transparent = Color.Transparent
 )

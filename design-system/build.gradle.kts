@@ -38,8 +38,6 @@ kotlin {
 
             implementation(libs.bundles.coil)
 
-            implementation(libs.okio)
-
             implementation(libs.kotlinx.datetime)
         }
         androidMain.dependencies {

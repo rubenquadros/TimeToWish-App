@@ -33,6 +33,10 @@ kotlin {
             implementation(libs.koin.annotations)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.savedstate)
+
+            implementation(libs.okio)
+
+            implementation(libs.bundles.coil)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
