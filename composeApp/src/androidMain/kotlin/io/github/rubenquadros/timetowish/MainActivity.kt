@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         enableEdgeToEdge()
         setContent {
-            App()
+            TWApp()
         }
     }
 }

@@ -54,11 +54,11 @@ private val VerticalPadding = 8.dp
 @Composable
 fun TWButton(
     content: TWButton.Content,
-    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
     variant: TWButton.Variant = TWButton.Variant.Primary,
-    paddingAdjustment: TWButton.PaddingAdjustment = TWButton.PaddingAdjustment.Default
+    paddingAdjustment: TWButton.PaddingAdjustment = TWButton.PaddingAdjustment.Default,
+    onClick: () -> Unit
 ) {
     when (content) {
         is TWButton.Content.Text -> {
@@ -152,7 +152,12 @@ private fun IconButtonInternal(
             IconButton(
                 modifier = modifier.then(
                     if (variant is TWButton.Variant.Elevated) {
-                        Modifier.shadow(elevation = TWTheme.elevations.level2, shape = CircleShape)
+                        Modifier.shadow(
+                            elevation = TWTheme.elevations.level2,
+                            shape = CircleShape,
+                            ambientColor = TWTheme.colors.surfaceTint,
+                            spotColor = TWTheme.colors.surfaceTint
+                        )
                     } else {
                         Modifier
                     }

@@ -25,8 +25,12 @@ package=$2
 test_package="$2.test"
 if [ -z "$3" ]; then
   directory=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
+  gradle_module=''
+  compose_app_module=''
 else
   directory=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )/$3
+  gradle_module="$3:"
+  compose_app_module="$3."
 fi
 base_path=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/basefiles
 root_directory=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
@@ -34,7 +38,7 @@ root_directory=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd
 echo "Creating module $name with package $package in directory $directory"
 
 #create new module directory
-cd "$directory" || exit
+cd "$directory" || mkdir "$directory" && cd "$directory" || exit
 mkdir "$name"
 
 module_dir=$directory/$name
@@ -50,4 +54,11 @@ mkdir -p src/commonMain/kotlin/"$package"
 mkdir -p src/commonTest/kotlin/"$test_package"
 
 #add module to settings.gradle.kts
-printf '\ninclude("%s")' "$name" >> "$root_directory"/settings.gradle.kts
+printf '\ninclude("%s")' ":$gradle_module$name" >> "$root_directory"/settings.gradle.kts
+
+#add module to composeApp
+cd "$root_directory/composeApp" || exit
+
+sed -i '' "/features/a\\
+implementation(projects.$compose_app_module$name)
+" build.gradle.kts

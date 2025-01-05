@@ -22,6 +22,7 @@ kotlin {
         it.binaries.framework {
             baseName = "core"
             isStatic = true
+            binaryOption("bundleId", "core")
         }
     }
 
@@ -31,8 +32,9 @@ kotlin {
             implementation(libs.bundles.ktor)
             implementation(libs.koin.core)
             implementation(libs.koin.annotations)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.savedstate)
+
+            implementation(libs.compose.lifecycle.viewmodel)
+            implementation(libs.compose.lifecycle.savedstate)
 
             implementation(libs.okio)
 

@@ -1,16 +1,14 @@
 package io.github.rubenquadros.timetowish.ui.card
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Shape
 import io.github.rubenquadros.timetowish.ui.TWTheme
 
 interface TWCard {
@@ -26,10 +24,16 @@ interface TWCard {
     }
 }
 
+/**
+ * @see [io.github.rubenquadros.timetowish.ui.preview.card.TWCardWithVisualContentPreview]
+ * @see [io.github.rubenquadros.timetowish.ui.preview.card.TWCardWithoutVisualContentPreview]
+ */
 @Composable
 fun TWCard(
     variant: TWCard.Variant,
     modifier: Modifier = Modifier,
+    cardColors: TWCardColors = TWCardDefaults.cardColors(),
+    cardShape: Shape = TWCardDefaults.cardShape(),
     visualContent: (@Composable () -> Unit)? = null,
     visualContentPlacement: TWCard.VisualContentPlacement = TWCard.VisualContentPlacement.Top,
     visualContentHorizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
@@ -40,8 +44,8 @@ fun TWCard(
     Card(
         modifier = modifier,
         onClick = { onClick?.invoke() },
-        shape = TWTheme.shapes.small,
-        colors = getCardColors(),
+        shape = cardShape,
+        colors = cardColors.toCardColors(),
         elevation = getCardElevation(variant),
         border = getCardBorder()
     ) {
@@ -64,7 +68,9 @@ fun TWCard(
                 ) {
                     visualContent?.invoke()
 
-                    content()
+                    Box(modifier = Modifier.fillMaxWidth().weight(1f)) {
+                        content()
+                    }
                 }
             }
 
@@ -73,7 +79,9 @@ fun TWCard(
                     horizontalArrangement = Arrangement.spacedBy(TWTheme.spacings.space1),
                     verticalAlignment = visualContentVerticalAlignment,
                 ) {
-                    content()
+                    Box(modifier = Modifier.fillMaxWidth().weight(1f)) {
+                        content()
+                    }
 
                     visualContent?.invoke()
                 }
@@ -97,14 +105,6 @@ private fun getCardElevation(variant: TWCard.Variant): CardElevation {
         }
         else -> CardDefaults.cardElevation()
     }
-}
-
-@Composable
-private fun getCardColors(): CardColors {
-    return CardDefaults.cardColors(
-        containerColor = TWTheme.colors.surfaceContainer,
-        disabledContainerColor = TWTheme.colors.disabledVariant
-    )
 }
 
 @Composable

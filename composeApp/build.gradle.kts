@@ -40,7 +40,18 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.compose.navigation)
+            implementation(libs.compose.material.navigation)
+            implementation(libs.compose.lifecycle.viewmodel)
+
+            implementation(libs.bundles.coil)
+
+            //core
+            implementation(projects.core)
+            implementation(projects.designSystem)
+
+            //features
+            implementation(projects.features.home)
         }
     }
 }

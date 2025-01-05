@@ -29,5 +29,6 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-include("design-system")
-include("core")
+include(":design-system")
+include(":core")
+include(":features:home")

@@ -86,6 +86,7 @@ private val LocalColors = staticCompositionLocalOf {
         onErrorContainer = Color.Unspecified,
         surface = Color.Unspecified,
         surfaceContainer = Color.Unspecified,
+        surfaceTint = Color.Unspecified,
         onSurface = Color.Unspecified,
         onSurfaceVariant = Color.Unspecified,
         outline = Color.Unspecified,
