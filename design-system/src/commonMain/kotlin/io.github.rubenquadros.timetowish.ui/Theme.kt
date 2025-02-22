@@ -89,7 +89,9 @@ private val LocalColors = staticCompositionLocalOf {
         surfaceTint = Color.Unspecified,
         onSurface = Color.Unspecified,
         onSurfaceVariant = Color.Unspecified,
+        neutral = Color.Unspecified,
         outline = Color.Unspecified,
+        white = Color.Unspecified,
         transparent = Color.Unspecified
     )
 }
