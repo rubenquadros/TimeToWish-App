@@ -1,0 +1,22 @@
+import io.github.rubenquadros.timetowish.core.session.LoginStatus;
+
+CREATE TABLE IF NOT EXISTS user (
+	row INTEGER NOT NULL PRIMARY KEY,
+	id TEXT NOT NULL,
+	name TEXT,
+	email TEXT,
+	profilePic TEXT,
+	loginStatus TEXT AS LoginStatus NOT NULL
+);
+
+getUser:
+SELECT * FROM user LIMIT 1;
+
+insertNonLoggedInUser:
+INSERT INTO user(row, id, loginStatus) VALUES (1, ?, "N");
+
+insertLoggedInUser:
+UPDATE user SET id = ?, name = ?, email = ?, profilePic = ?, loginStatus = "Y" WHERE row = 1;
+
+getUserId:
+SELECT id FROM user;

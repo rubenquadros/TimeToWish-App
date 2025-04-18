@@ -15,6 +15,7 @@ import io.github.rubenquadros.timetowish.core.imageLoader.getImageLoader
 import io.github.rubenquadros.timetowish.feature.home.HomeScreen
 import io.github.rubenquadros.timetowish.feature.home.homeScreen
 import io.github.rubenquadros.timetowish.ui.TWTheme
+import org.koin.compose.KoinApplication
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
@@ -26,16 +27,20 @@ fun TWApp() {
     val bottomSheetNavigator = rememberBottomSheetNavigator()
     val navController = rememberNavController(bottomSheetNavigator)
 
-    TWTheme {
-        ModalBottomSheetLayout(
-            bottomSheetNavigator = bottomSheetNavigator,
-            modifier = Modifier.background(color = TWTheme.colors.surface).safeDrawingPadding().fillMaxSize()
-        ) {
-            NavHost(
-                navController = navController,
-                startDestination = HomeScreen
+    KoinApplication(
+        application = koinConfig().config
+    ) {
+        TWTheme {
+            ModalBottomSheetLayout(
+                bottomSheetNavigator = bottomSheetNavigator,
+                modifier = Modifier.background(color = TWTheme.colors.surface).safeDrawingPadding().fillMaxSize()
             ) {
-                homeScreen()
+                NavHost(
+                    navController = navController,
+                    startDestination = HomeScreen
+                ) {
+                    homeScreen()
+                }
             }
         }
     }

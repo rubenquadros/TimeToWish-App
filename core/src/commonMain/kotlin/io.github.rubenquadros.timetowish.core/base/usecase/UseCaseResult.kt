@@ -1,4 +1,4 @@
-package io.github.rubenquadros.timetowish.core.usecase
+package io.github.rubenquadros.timetowish.core.base.usecase
 
 sealed interface UseCaseResult<out DATA> {
     data class Success<DATA>(val data: DATA): UseCaseResult<DATA>

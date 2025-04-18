@@ -6,11 +6,11 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import io.github.rubenquadros.timetowish.ui.resources.Res
+import io.github.rubenquadros.timetowish.ui.resources.montserrat_bold
+import io.github.rubenquadros.timetowish.ui.resources.montserrat_light
+import io.github.rubenquadros.timetowish.ui.resources.montserrat_regular
 import org.jetbrains.compose.resources.Font
-import timetowish.design_system.generated.resources.Res
-import timetowish.design_system.generated.resources.montserrat_bold
-import timetowish.design_system.generated.resources.montserrat_light
-import timetowish.design_system.generated.resources.montserrat_regular
 
 @Composable
 fun typography() = Typography().apply {

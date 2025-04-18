@@ -33,6 +33,10 @@ kotlin {
     }
 }
 
+compose.resources {
+    packageOfResClass = "modulePackage.resources"
+}
+
 android {
     namespace = "modulePackage"
     compileSdk = 35

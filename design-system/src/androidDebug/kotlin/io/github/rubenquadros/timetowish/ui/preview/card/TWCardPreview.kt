@@ -12,9 +12,9 @@ import io.github.rubenquadros.timetowish.ui.card.TWCard
 import io.github.rubenquadros.timetowish.ui.image.ImageReference
 import io.github.rubenquadros.timetowish.ui.image.TWImage
 import io.github.rubenquadros.timetowish.ui.preview.TWPreviewTheme
+import io.github.rubenquadros.timetowish.ui.resources.Res
+import io.github.rubenquadros.timetowish.ui.resources.compose_multiplatform_logo
 import io.github.rubenquadros.timetowish.ui.text.TWText
-import timetowish.design_system.generated.resources.Res
-import timetowish.design_system.generated.resources.compose_multiplatform_logo
 
 @PreviewLightDark
 @Composable

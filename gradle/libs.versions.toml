@@ -3,9 +3,8 @@ agp = "8.7.3"
 android-compileSdk = "35"
 android-minSdk = "26"
 android-targetSdk = "35"
-androidx-activityCompose = "1.10.0"
+androidx-activityCompose = "1.10.1"
 androidx-appcompat = "1.7.0"
-androidx-constraintlayout = "2.2.0"
 androidx-core-ktx = "1.15.0"
 androidx-espresso-core = "3.6.1"
 androidx-material = "1.2.1"
@@ -23,8 +22,8 @@ kotlinx-immutable-collections = "0.3.8"
 ktor = "3.0.3"
 kotlinx-serialization-plugin = "2.1.10"
 ksp = "2.1.0-1.0.29"
-koin = "4.0.2"
-koin-annotations = "2.0.0-RC4"
+koin = "4.0.3"
+koin-annotations = "2.0.0"
 compose-navigation = "2.8.0-alpha11"
 compose-material-navigation = "1.7.0-beta02"
 compose-lifecycle = "2.9.0-alpha03"
@@ -40,7 +39,6 @@ androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 androidx-material = { group = "com.google.android.material3", name = "material3", version.ref = "androidx-material" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 
 #compose-multiplatform
@@ -97,9 +95,6 @@ koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", vers
 sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-ios = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
-
-#firebase
-firebase-installation = { group = "com.google.firebase", name = "firebase-installations", version.ref = "firebase-installation" }
 
 [bundles]
 coil = ["coil-image", "coil-compose-core", "coil-compose", "coil-network"]

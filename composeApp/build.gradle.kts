@@ -1,10 +1,13 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.sqldelight)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -26,12 +29,13 @@ kotlin {
     }
     
     sourceSets {
-        
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
 
             implementation(libs.androidx.splashscreen)
+
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -46,11 +50,17 @@ kotlin {
 
             implementation(libs.bundles.coil)
 
+            implementation(libs.koin.core)
+            implementation(libs.koin.annotations)
+            implementation(libs.koin.compose)
+            commonMain.configure { kotlin.srcDirs("build/generated/ksp/metadata/commonMain/kotlin") }
+
             //core
             implementation(projects.core)
             implementation(projects.designSystem)
 
-            //features
+            //featureModules
+            implementation(projects.shared)
             implementation(projects.features.home)
         }
     }
@@ -87,3 +97,39 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
+// KSP Tasks
+dependencies {
+    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
+}
+
+// WORKAROUND: ADD this dependsOn("kspCommonMainKotlinMetadata") instead of above dependencies
+tasks.withType<KotlinCompilationTask<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+afterEvaluate {
+    tasks.filter {
+        it.name.contains("SourcesJar", true)
+    }.forEach {
+        it.dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+ksp {
+    arg("KOIN_CONFIG_CHECK","true")
+    arg("KOIN_DEFAULT_MODULE","false")
+}
+
+sqldelight {
+    databases {
+        create("TimeToWishDb") {
+            packageName.set("io.github.rubenquadros.timetowish")
+            schemaOutputDirectory.set(file("${rootProject.projectDir}/db-schema"))
+            generateAsync.set(true)
+            dependency(projects.core)
+            dependency(projects.shared)
+        }
+    }
+}

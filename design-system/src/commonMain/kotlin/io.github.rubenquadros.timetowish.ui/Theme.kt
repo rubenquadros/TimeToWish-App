@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -63,7 +64,7 @@ private val LocalShapes = staticCompositionLocalOf {
     )
 }
 
-private val LocalColors = staticCompositionLocalOf {
+private val LocalColors = compositionLocalOf {
     TWColors(
         primary = Color.Unspecified,
         onPrimary = Color.Unspecified,

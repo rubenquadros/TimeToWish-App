@@ -11,8 +11,8 @@ import io.github.rubenquadros.timetowish.ui.TWTheme
 import io.github.rubenquadros.timetowish.ui.button.TWButton
 import io.github.rubenquadros.timetowish.ui.image.ImageReference
 import io.github.rubenquadros.timetowish.ui.preview.TWPreviewTheme
-import timetowish.design_system.generated.resources.Res
-import timetowish.design_system.generated.resources.compose_multiplatform_logo
+import io.github.rubenquadros.timetowish.ui.resources.Res
+import io.github.rubenquadros.timetowish.ui.resources.compose_multiplatform_logo
 
 @PreviewLightDark
 @Composable

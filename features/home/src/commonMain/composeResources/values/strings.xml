@@ -1,5 +1,5 @@
 <resources>
-    <string name="home_hello_loggged_in">Hello %1s!</string>
+    <string name="home_hello_loggged_in">Hello %1$s!</string>
     <string name="home_hello_non_logged_in">Hello! Please sign in to access everything we offer!</string>
     <string name="home_profile_accessibility_label">Profile</string>
     <string name="home_calendar_title">Your calendar</string>
@@ -14,9 +14,8 @@
     <string name="home_add_event_title">Add an event</string>
     <string name="home_add_event_description">Quickly create new events and reminders</string>
     <string name="home_add_event_accessibility_label">Add a new event</string>
-    <string name="home_tech_credit">Powered by AI and unSpash &#x2764;</string>
+    <string name="home_tech_credit">Powered by AI and Unsplash &#x2764;</string>
     <string name="home_no_upcoming_events">You have no upcoming events</string>
-    <string name="home_upcoming_events">Today\’s full of moments! Explore cards and wishes for the special occasions today</string>
     <string name="home_event_alert_accessibility_label">Alert</string>
-    <string name="home_view_events">View events</string>
+	<string name="home_error_retry_cta">Retry</string>
 </resources>

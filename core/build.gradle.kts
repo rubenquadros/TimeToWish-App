@@ -1,10 +1,12 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -32,6 +34,7 @@ kotlin {
             implementation(libs.bundles.ktor)
             implementation(libs.koin.core)
             implementation(libs.koin.annotations)
+            commonMain.configure { kotlin.srcDirs("build/generated/ksp/metadata/commonMain/kotlin") }
 
             implementation(libs.compose.lifecycle.viewmodel)
             implementation(libs.compose.lifecycle.savedstate)
@@ -39,12 +42,16 @@ kotlin {
             implementation(libs.okio)
 
             implementation(libs.bundles.coil)
+
+            implementation(libs.sqldelight.coroutines)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.sqldelight.android)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.ios)
         }
     }
 }
@@ -52,10 +59,21 @@ kotlin {
 // KSP Tasks
 dependencies {
     add("kspCommonMainMetadata", libs.koin.ksp.compiler)
-    add("kspAndroid", libs.koin.ksp.compiler)
-    add("kspIosX64", libs.koin.ksp.compiler)
-    add("kspIosArm64", libs.koin.ksp.compiler)
-    add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
+}
+
+// WORKAROUND: ADD this dependsOn("kspCommonMainKotlinMetadata") instead of above dependencies
+tasks.withType<KotlinCompilationTask<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+afterEvaluate {
+    tasks.filter {
+        it.name.contains("SourcesJar", true)
+    }.forEach {
+        it.dependsOn("kspCommonMainKotlinMetadata")
+    }
 }
 
 ksp {
@@ -72,5 +90,15 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+sqldelight {
+    databases {
+        create("TimeToWishDb") {
+            packageName.set("io.github.rubenquadros.timetowish.core")
+            schemaOutputDirectory.set(file("${rootProject.projectDir}/db-schema"))
+            generateAsync.set(true)
+        }
     }
 }

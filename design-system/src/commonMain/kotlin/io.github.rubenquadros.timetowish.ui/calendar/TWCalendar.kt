@@ -12,11 +12,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Constraints
 import io.github.rubenquadros.timetowish.ui.TWTheme
+import io.github.rubenquadros.timetowish.ui.resources.Res
+import io.github.rubenquadros.timetowish.ui.resources.tw_week_days
 import io.github.rubenquadros.timetowish.ui.text.TWText
 import kotlinx.datetime.*
 import org.jetbrains.compose.resources.stringArrayResource
-import timetowish.design_system.generated.resources.Res
-import timetowish.design_system.generated.resources.tw_week_days
 
 /**
  * @see [io.github.rubenquadros.timetowish.ui.preview.calendar.TWCalendarPreview]

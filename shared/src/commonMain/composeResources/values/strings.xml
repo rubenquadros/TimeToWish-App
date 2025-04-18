@@ -1,0 +1,5 @@
+<resources>
+	<string name="common_error_message">Oops! Something didn’t load correctly. If the issue persists, please contact support.</string>
+	<string name="common_error_image_accessibility_label">Error screen no cake image</string>
+	<string name="common_contact_support">Contact support</string>
+</resources>

@@ -9,10 +9,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import coil3.compose.AsyncImage
 import io.github.rubenquadros.timetowish.ui.TWTheme
+import io.github.rubenquadros.timetowish.ui.resources.Res
+import io.github.rubenquadros.timetowish.ui.resources.compose_multiplatform_logo
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
-import timetowish.design_system.generated.resources.Res
-import timetowish.design_system.generated.resources.compose_multiplatform_logo
 
 /**
  * @see [io.github.rubenquadros.timetowish.ui.preview.image.TWImagePreview]

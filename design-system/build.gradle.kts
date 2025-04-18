@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -10,7 +9,6 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
@@ -44,6 +42,10 @@ kotlin {
             implementation(libs.bundles.androidx.compose)
         }
     }
+}
+
+compose.resources {
+    packageOfResClass = "io.github.rubenquadros.timetowish.ui.resources"
 }
 
 android {

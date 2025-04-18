@@ -1,6 +1,7 @@
 package io.github.rubenquadros.timetowish.ui.card
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -42,8 +43,7 @@ fun TWCard(
     content: @Composable () -> Unit,
 ) {
     Card(
-        modifier = modifier,
-        onClick = { onClick?.invoke() },
+        modifier = modifier.clickable(enabled = onClick != null, onClick = { onClick?.invoke() }),
         shape = cardShape,
         colors = cardColors.toCardColors(),
         elevation = getCardElevation(variant),
