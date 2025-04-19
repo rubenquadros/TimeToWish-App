@@ -58,6 +58,7 @@ kotlin {
             //core
             implementation(projects.core)
             implementation(projects.designSystem)
+            implementation(projects.navigationRoutes)
 
             //featureModules
             implementation(projects.shared)

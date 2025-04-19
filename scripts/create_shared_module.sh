@@ -26,6 +26,7 @@ cat << HELP
     -p: Package name (Required)
     -r: If you want to specify a directory. If it is not specified then the new module will be created in the root directory
 HELP
+exit 1
 }
 #read
 use_database=false
@@ -81,11 +82,10 @@ module_dir=$directory/$module_name
 cd "$module_name" || exit
 
 #create gradle file
-if [ $use_database ];
-then
+if [ "$use_database" = "true" ]; then
   cp "$base_path"/build.db.gradle.kts "$module_dir"/build.gradle.kts
 else
-  cp "$base_path"/build.gradle.kts "$module_dir"
+  cp "$base_path"/build.gradle.kts "$module_dir"/build.gradle.kts
 fi
 sed -i '' "s|moduleName|$module_name|g" build.gradle.kts
 sed -i '' "s|modulePackage|$package_name|g" build.gradle.kts
@@ -105,7 +105,7 @@ sed -i '' "/featureModules/a\\
 implementation(projects.$compose_app_module$module_name)
 " build.gradle.kts
 
-if [ $use_database ]; then
+if [ "$use_database" = "true" ]; then
     sed -i '' "/generateAsync.set/a\\
     dependency(projects.$compose_app_module$module_name)
 " build.gradle.kts

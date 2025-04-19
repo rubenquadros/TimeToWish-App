@@ -2,12 +2,8 @@ package io.github.rubenquadros.timetowish.feature.home
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import io.github.rubenquadros.timetowish.core.destination.TWDestination
 import io.github.rubenquadros.timetowish.feature.home.presentation.ui.HomeScreen
-import kotlinx.serialization.Serializable
-
-@Serializable
-data object HomeScreen: TWDestination
+import io.github.rubenquadros.timetowish.navigation.routes.home.HomeScreen
 
 fun NavGraphBuilder.homeScreen() {
     composable<HomeScreen> {

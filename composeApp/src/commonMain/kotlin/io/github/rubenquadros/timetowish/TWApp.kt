@@ -12,8 +12,8 @@ import androidx.navigation.compose.rememberNavController
 import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
 import io.github.rubenquadros.timetowish.core.imageLoader.getImageLoader
-import io.github.rubenquadros.timetowish.feature.home.HomeScreen
 import io.github.rubenquadros.timetowish.feature.home.homeScreen
+import io.github.rubenquadros.timetowish.navigation.routes.home.HomeScreen
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import org.koin.compose.KoinApplication
 
