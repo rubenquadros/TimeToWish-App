@@ -1,7 +1,10 @@
 package io.github.rubenquadros.timetowish.ui.button
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -11,6 +14,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -31,7 +35,7 @@ interface TWButton {
     }
 
     sealed interface Content {
-        data class Text(val text: String) : Content
+        data class Text(val text: String, val icon: TextIcon? = null) : Content
         data class Icon(val imageReference: ImageReference, val accessibilityLabel: String) : Content
     }
 
@@ -39,6 +43,16 @@ interface TWButton {
         data object Default : PaddingAdjustment
         data object AdjustLeft : PaddingAdjustment
         data object AdjustRight : PaddingAdjustment
+    }
+
+    data class TextIcon(
+        val imageReference: ImageReference,
+        val position: TextIconPosition,
+        val accessibilityLabel: String
+    )
+
+    enum class TextIconPosition {
+        START, END;
     }
 }
 
@@ -105,20 +119,91 @@ private fun TextButtonInternal(
         shape = TWTheme.shapes.small,
         onClick = onClick
     ) {
-        TWText(
-            text = textContent.text,
-            textColor = if (isEnabled) {
-                colors.contentColor
-            } else {
-                colors.disabledContentColor
-            },
-            textAlign = when (paddingAdjustment) {
-                is TWButton.PaddingAdjustment.AdjustLeft -> TextAlign.Left
-                is TWButton.PaddingAdjustment.AdjustRight -> TextAlign.Right
-                is TWButton.PaddingAdjustment.Default -> TextAlign.Center
-            }
-        )
+        if (textContent.icon != null) {
+            ButtonIconAndTextContentInternal(
+                textContent = textContent,
+                colors = colors,
+                paddingAdjustment = paddingAdjustment,
+                isEnabled = isEnabled
+            )
+        } else {
+            ButtonTextContentInternal(
+                textContent = textContent,
+                colors = colors,
+                isEnabled = isEnabled,
+                paddingAdjustment = paddingAdjustment
+            )
+        }
     }
+}
+
+@Composable
+private fun ButtonIconAndTextContentInternal(
+    textContent: TWButton.Content.Text,
+    colors: ButtonColors,
+    isEnabled: Boolean,
+    paddingAdjustment: TWButton.PaddingAdjustment
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(TWTheme.spacings.space1)
+    ) {
+        if (textContent.icon?.position == TWButton.TextIconPosition.START) {
+            TWImage(
+                modifier = Modifier.size(TWTheme.spacings.space6),
+                imageReference = textContent.icon.imageReference,
+                accessibilityLabel = textContent.icon.accessibilityLabel,
+                tint = if (!isEnabled) {
+                    colors.disabledContentColor
+                } else null
+            )
+
+            ButtonTextContentInternal(
+                textContent = textContent,
+                colors = colors,
+                isEnabled = isEnabled,
+                paddingAdjustment = paddingAdjustment
+            )
+        } else {
+            ButtonTextContentInternal(
+                textContent = textContent,
+                colors = colors,
+                isEnabled = isEnabled,
+                paddingAdjustment = paddingAdjustment
+            )
+
+            TWImage(
+                modifier = Modifier.size(TWTheme.spacings.space6),
+                imageReference = textContent.icon!!.imageReference,
+                accessibilityLabel = textContent.icon.accessibilityLabel,
+                tint = if (!isEnabled) {
+                    colors.disabledContentColor
+                } else null
+            )
+        }
+    }
+}
+
+@Composable
+private fun ButtonTextContentInternal(
+    textContent: TWButton.Content.Text,
+    isEnabled: Boolean,
+    colors: ButtonColors,
+    paddingAdjustment: TWButton.PaddingAdjustment
+) {
+    TWText(
+        text = textContent.text,
+        textColor = if (isEnabled) {
+            colors.contentColor
+        } else {
+            colors.disabledContentColor
+        },
+        textAlign = when (paddingAdjustment) {
+            is TWButton.PaddingAdjustment.AdjustLeft -> TextAlign.Left
+            is TWButton.PaddingAdjustment.AdjustRight -> TextAlign.Right
+            is TWButton.PaddingAdjustment.Default -> TextAlign.Center
+        }
+    )
 }
 
 @Composable
