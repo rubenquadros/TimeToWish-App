@@ -1,4 +1,4 @@
-package io.github.rubenquadros.timetowish.shared.ui
+package io.github.rubenquadros.timetowish.features.shared.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,11 +15,11 @@ import io.github.rubenquadros.timetowish.ui.image.ImageReference
 import io.github.rubenquadros.timetowish.ui.image.TWImage
 import io.github.rubenquadros.timetowish.ui.text.TWText
 import org.jetbrains.compose.resources.stringResource
-import timetowish.shared.generated.resources.Res
-import timetowish.shared.generated.resources.common_contact_support
-import timetowish.shared.generated.resources.common_error
-import timetowish.shared.generated.resources.common_error_image_accessibility_label
-import timetowish.shared.generated.resources.common_error_message
+import timetowish.features.shared.generated.resources.Res
+import timetowish.features.shared.generated.resources.common_contact_support
+import timetowish.features.shared.generated.resources.common_error
+import timetowish.features.shared.generated.resources.common_error_image_accessibility_label
+import timetowish.features.shared.generated.resources.common_error_message
 
 interface ErrorScreen {
 

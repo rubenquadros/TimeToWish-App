@@ -17,7 +17,7 @@ import io.github.rubenquadros.timetowish.feature.home.presentation.HomeUiState
 import io.github.rubenquadros.timetowish.feature.home.presentation.HomeViewModel
 import io.github.rubenquadros.timetowish.feature.home.resources.Res
 import io.github.rubenquadros.timetowish.feature.home.resources.home_error_retry_cta
-import io.github.rubenquadros.timetowish.shared.ui.ErrorScreen
+import io.github.rubenquadros.timetowish.features.shared.ui.ErrorScreen
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
