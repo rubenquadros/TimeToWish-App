@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
@@ -23,6 +24,19 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
+
+    cocoapods {
+        summary = "This is the main module"
+        homepage = "Link to the Main Module homepage"
+        ios.deploymentTarget = "16.0"
+        version = "1.0"
+        podfile = project.file("../iosApp/Podfile")
+
+        framework {
             baseName = "ComposeApp"
             isStatic = true
         }
@@ -63,6 +77,9 @@ kotlin {
             //featureModules
             implementation(projects.shared)
             implementation(projects.features.home)
+
+            //services
+            implementation(projects.services.auth)
         }
     }
 }
