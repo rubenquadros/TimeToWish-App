@@ -15,8 +15,8 @@ import kotlinx.collections.immutable.persistentListOf
 private fun HomeContentPreview(
     @PreviewParameter(HomeEntityPreviewParameterProvider::class) homeEntity: HomeEntity
 ) {
-    HomeScreenPreview {
-        HomeContent(homeEntity)
+    HomePreviewContainer {
+        HomeContent(homeEntity) { }
     }
 }
 

@@ -9,7 +9,7 @@ import io.github.rubenquadros.timetowish.ui.TWTheme
 import io.github.rubenquadros.timetowish.ui.preview.TWPreviewTheme
 
 @Composable
-internal fun HomeScreenPreview(content: @Composable () -> Unit) {
+internal fun HomePreviewContainer(content: @Composable () -> Unit) {
     TWPreviewTheme {
         Box(
             modifier = Modifier

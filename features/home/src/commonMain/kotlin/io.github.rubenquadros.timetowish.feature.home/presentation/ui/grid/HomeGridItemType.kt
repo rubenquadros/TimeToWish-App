@@ -18,6 +18,7 @@ import io.github.rubenquadros.timetowish.feature.home.resources.home_greeting_ca
 import io.github.rubenquadros.timetowish.feature.home.resources.home_greeting_card_accessibility_label
 import io.github.rubenquadros.timetowish.feature.home.resources.home_greeting_card_description
 import io.github.rubenquadros.timetowish.feature.home.resources.home_greeting_card_title
+import io.github.rubenquadros.timetowish.navigation.routes.TWDestination
 import io.github.rubenquadros.timetowish.ui.image.ImageReference
 import org.jetbrains.compose.resources.stringResource
 
@@ -33,6 +34,12 @@ internal enum class HomeGridItemType {
             description = getDescription()
         )
     }
+
+//    fun getDestination(): TWDestination {
+//        return when (this) {
+//
+//        }
+//    }
 
     private fun HomeGridItemType.getIcon(): ImageReference.ResImage {
         return when (this) {

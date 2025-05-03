@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TWApp()
         }.also {
-            ActivityHolder.setActivityContext(this)
+            ActivityHolder.setActivityContext(context = this)
         }
     }
 

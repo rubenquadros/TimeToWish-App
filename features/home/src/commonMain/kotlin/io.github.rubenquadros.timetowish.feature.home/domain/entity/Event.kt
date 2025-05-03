@@ -1,6 +1,6 @@
 package io.github.rubenquadros.timetowish.feature.home.domain.entity
 
-data class Event(
+internal data class Event(
     val id: String,
     val userId: String,
     val date: String,

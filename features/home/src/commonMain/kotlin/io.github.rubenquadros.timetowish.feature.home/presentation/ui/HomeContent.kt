@@ -19,12 +19,13 @@ import io.github.rubenquadros.timetowish.core.session.CurrentUser
 import io.github.rubenquadros.timetowish.feature.home.domain.entity.Event
 import io.github.rubenquadros.timetowish.feature.home.domain.entity.HomeEntity
 import io.github.rubenquadros.timetowish.feature.home.presentation.ui.grid.HomeGrid
+import io.github.rubenquadros.timetowish.feature.home.presentation.ui.grid.HomeGridItemType
 import io.github.rubenquadros.timetowish.feature.home.resources.Res
 import io.github.rubenquadros.timetowish.feature.home.resources.home_alert
 import io.github.rubenquadros.timetowish.feature.home.resources.home_event_alert_accessibility_label
 import io.github.rubenquadros.timetowish.feature.home.resources.home_events
 import io.github.rubenquadros.timetowish.feature.home.resources.home_events_cta
-import io.github.rubenquadros.timetowish.feature.home.resources.home_hello_loggged_in
+import io.github.rubenquadros.timetowish.feature.home.resources.home_hello_logged_in
 import io.github.rubenquadros.timetowish.feature.home.resources.home_hello_non_logged_in
 import io.github.rubenquadros.timetowish.feature.home.resources.home_no_upcoming_events
 import io.github.rubenquadros.timetowish.feature.home.resources.home_profile
@@ -43,8 +44,9 @@ import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun HomeContent(
-    homeEntity: HomeEntity
+internal fun HomeContent(
+    homeEntity: HomeEntity,
+    onCardClick: (itemType: HomeGridItemType) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -67,7 +69,8 @@ fun HomeContent(
         )
 
         HomeGrid(
-            modifier = Modifier.padding(horizontal = TWTheme.spacings.space2).fillMaxWidth()
+            modifier = Modifier.padding(horizontal = TWTheme.spacings.space2).fillMaxWidth(),
+            onClick = onCardClick
         )
 
         TWText(
@@ -93,7 +96,7 @@ private fun TopBar(
             text = if (currentUser == null || !currentUser.isLoggedIn) {
                 stringResource(Res.string.home_hello_non_logged_in)
             } else {
-                stringResource(Res.string.home_hello_loggged_in, currentUser.name)
+                stringResource(Res.string.home_hello_logged_in, currentUser.name)
             },
             textStyle = TWTheme.typography.titleLarge,
             textAlign = TextAlign.Start,

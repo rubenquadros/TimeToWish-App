@@ -8,7 +8,7 @@ import io.github.rubenquadros.timetowish.feature.home.data.model.GetEventRespons
 import io.github.rubenquadros.timetowish.feature.home.domain.entity.Event
 import io.github.rubenquadros.timetowish.feature.home.domain.repository.HomeRepository
 import io.ktor.client.request.get
-import io.ktor.http.path
+import io.ktor.http.appendPathSegments
 import org.koin.core.annotation.Single
 
 @Single
@@ -16,7 +16,8 @@ internal class HomeRepositoryImpl(private val apiManager: ApiManager): HomeRepos
     override suspend fun getTodayEvents(date: String): List<Event> {
         val response: GetEventResponse = apiManager.client.get {
             url {
-                path(date)
+                appendPathSegments("events")
+                parameters.append("date", date)
             }
         }.body()
 

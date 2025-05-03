@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.github.rubenquadros.timetowish.ui.TWTheme
@@ -48,7 +49,8 @@ interface TWButton {
     data class TextIcon(
         val imageReference: ImageReference,
         val position: TextIconPosition,
-        val accessibilityLabel: String
+        val accessibilityLabel: String,
+        val tint: Color? = null
     )
 
     enum class TextIconPosition {
@@ -146,16 +148,18 @@ private fun ButtonIconAndTextContentInternal(
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(TWTheme.spacings.space1)
+        horizontalArrangement = Arrangement.spacedBy(TWTheme.spacings.space2)
     ) {
         if (textContent.icon?.position == TWButton.TextIconPosition.START) {
             TWImage(
-                modifier = Modifier.size(TWTheme.spacings.space6),
+                modifier = Modifier
+                    .size(TWTheme.spacings.space6)
+                    .clearAndSetSemantics {  }, //do not announce in talk back
                 imageReference = textContent.icon.imageReference,
                 accessibilityLabel = textContent.icon.accessibilityLabel,
                 tint = if (!isEnabled) {
                     colors.disabledContentColor
-                } else null
+                } else textContent.icon.tint
             )
 
             ButtonTextContentInternal(

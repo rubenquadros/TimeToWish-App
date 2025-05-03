@@ -33,7 +33,7 @@ use_database=false
 module_name=""
 package_name=""
 directory_name=""
-while getopts "drm:p:" opt; do
+while getopts "dr:m:p:" opt; do
   case $opt in
     d)
       use_database=true

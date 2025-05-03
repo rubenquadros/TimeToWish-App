@@ -6,16 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.rubenquadros.timetowish.core.internal.RestartableStateFlow
 import io.github.rubenquadros.timetowish.core.internal.restartableStateIn
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.merge
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 //import kotlinx.serialization.KSerializer
 
-abstract class BaseViewModel<STATE: Any>(
+abstract class BaseViewModel<STATE: Any, EVENT: Any>(
     savedStateHandle: SavedStateHandle,
     initialState: STATE,
     //serializer: KSerializer<STATE>
@@ -27,12 +31,15 @@ abstract class BaseViewModel<STATE: Any>(
 
     private val _uiState: MutableStateFlow<STATE> = MutableStateFlow(initialState/*_savedState*/)
     val uiState: StateFlow<STATE> by lazy {
-        merge(_uiState, this.loadInitialData()).restartableStateIn(
+        merge(_uiState, this.loadInitialData().onEach { _uiState.value = it }).restartableStateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(ANR_DEADLINE),
+            started = SharingStarted.Lazily,
             initialValue = initialState //_savedState
         )
     }
+
+    private val _uiEvent: Channel<EVENT> = Channel(Channel.BUFFERED)
+    val uiEvent: Flow<EVENT> = _uiEvent.receiveAsFlow()
 
     open fun loadInitialData(): Flow<STATE> = emptyFlow()
 
@@ -44,9 +51,11 @@ abstract class BaseViewModel<STATE: Any>(
         }
     }
 
+    fun updateEvent(event: EVENT) {
+        viewModelScope.launch { _uiEvent.send(event) }
+    }
+
     fun reloadInitialData() {
         (uiState as? RestartableStateFlow)?.restart()
     }
 }
-
-private const val ANR_DEADLINE = 5_000L
