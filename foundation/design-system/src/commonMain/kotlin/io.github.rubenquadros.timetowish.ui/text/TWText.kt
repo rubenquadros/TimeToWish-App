@@ -17,7 +17,7 @@ fun TWText(
     text: String,
     modifier: Modifier = Modifier,
     textColor: Color = TWTheme.colors.onSurface,
-    textStyle: TextStyle = TWTheme.typography.bodySmall,
+    textStyle: TextStyle = TWTheme.typography.bodyLarge,
     textAlign: TextAlign = TextAlign.Start,
     fontWeight: FontWeight = FontWeight.Normal
 ) {

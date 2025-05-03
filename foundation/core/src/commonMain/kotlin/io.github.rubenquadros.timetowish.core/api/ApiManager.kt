@@ -47,6 +47,8 @@ internal class ApiManagerImpl(private val userSession: UserSession) : ApiManager
                     host = "timetowish-server.onrender.com"
                     protocol = URLProtocol.HTTPS
                 }
+
+                contentType(ContentType.Application.Json)
             }
         }.also { httpClient ->
             httpClient.apply {

@@ -3,12 +3,12 @@ package io.github.rubenquadros.timetowish.feature.home.data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GetEventResponse(
+internal data class GetEventResponse(
     val events: List<EventResponse>
 )
 
 @Serializable
-data class EventResponse(
+internal data class EventResponse(
     val id: String,
     val userId: String,
     val date: String,

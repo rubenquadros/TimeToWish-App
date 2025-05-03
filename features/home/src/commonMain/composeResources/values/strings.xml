@@ -1,5 +1,5 @@
 <resources>
-    <string name="home_hello_loggged_in">Hello %1$s!</string>
+    <string name="home_hello_logged_in">Hello %1$s!</string>
     <string name="home_hello_non_logged_in">Hello! Please sign in to access everything we offer!</string>
     <string name="home_profile_accessibility_label">Profile</string>
     <string name="home_calendar_title">Your calendar</string>
@@ -18,4 +18,5 @@
     <string name="home_no_upcoming_events">You have no upcoming events</string>
     <string name="home_event_alert_accessibility_label">Alert</string>
 	<string name="home_error_retry_cta">Retry</string>
+	<string name="home_loading_accessibility_label">Loading</string>
 </resources>

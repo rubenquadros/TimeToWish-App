@@ -20,14 +20,19 @@ interface UserSession {
     suspend fun isUserLoggedIn(): Boolean
 
     /**
-     * This method does not guarentee the correct information till the time [CurrentUser] becomes available.
-     * Use this method if you are sure the flow will access the login iformation post it's availability.
+     * Save the user in the database
+     */
+    suspend fun saveUser(currentUser: CurrentUser)
+
+    /**
+     * This method does not guarantee the correct information till the time [CurrentUser] becomes available.
+     * Use this method if you are sure the flow will access the login information post it's availability.
      */
     val isLoggedIn: Boolean
 
     /**
      * This method returns a null value till the time [CurrentUser] becomes available.
-     * Use this method if you are sure the flow will access the user iformation post it's availability.
+     * Use this method if you are sure the flow will access the user information post it's availability.
      */
     val currentUser: CurrentUser?
 }
@@ -54,6 +59,12 @@ internal class UserSessionImpl(
 
     override suspend fun isUserLoggedIn(): Boolean {
         return _currentUserFlow.filterNotNull().stateIn(appScope).first().isLoggedIn
+    }
+
+    override suspend fun saveUser(currentUser: CurrentUser) {
+        with(currentUser) {
+            database.userQueries.insertLoggedInUser(id = id, name = name, email = email, profilePic = profilePic)
+        }
     }
 
     override val isLoggedIn: Boolean

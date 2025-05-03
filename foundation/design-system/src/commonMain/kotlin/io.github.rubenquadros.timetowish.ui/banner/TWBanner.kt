@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import io.github.rubenquadros.timetowish.ui.TWTheme
@@ -65,13 +67,13 @@ fun TWBanner(
         )
     ) {
         Row(
-            modifier = Modifier.padding(TWTheme.spacings.space2),
+            modifier = Modifier.padding(TWTheme.spacings.space2).semantics(mergeDescendants = true, {}),
             horizontalArrangement = Arrangement.spacedBy(TWTheme.spacings.space2)
         ) {
             if (icon != null) {
                 with(icon) {
                     TWImage(
-                        modifier = Modifier.size(getSize(size)),
+                        modifier = Modifier.size(getSize(size)).clearAndSetSemantics {  }, //do not read in talkback
                         imageReference = imageReference,
                         accessibilityLabel = accessibilityLabel,
                         tint = tint

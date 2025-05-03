@@ -46,7 +46,7 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.google.credentials)
-            implementation(libs.google.credentials.play.services.auth)
+            implementation(libs.google.credentials.play.services)
             implementation(libs.google.credentials.id)
         }
 

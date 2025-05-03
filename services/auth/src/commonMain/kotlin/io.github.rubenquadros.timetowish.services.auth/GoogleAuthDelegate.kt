@@ -1,8 +1,9 @@
 package io.github.rubenquadros.timetowish.services.auth
 
-expect class GoogleAuthDelegate() {
-
-    suspend fun login(clientId: String) : SignInResult
+interface Auth {
+    suspend fun login(clientId: String, serverId: String = ""): SignInResult
 
     suspend fun logout(): SignOutResult
 }
+
+expect fun getGoogleAuthDelegate(): Auth

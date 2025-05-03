@@ -7,7 +7,7 @@ import io.github.rubenquadros.timetowish.ui.preview.TWPreview
 @TWPreview
 @Composable
 private fun HomeLoadingPreview() {
-    HomeScreenPreview {
+    HomePreviewContainer {
         HomeScreenLoading()
     }
 }
