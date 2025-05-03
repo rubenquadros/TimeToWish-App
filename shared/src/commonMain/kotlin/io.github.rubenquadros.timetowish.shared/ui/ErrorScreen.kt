@@ -22,7 +22,7 @@ import timetowish.shared.generated.resources.common_error_image_accessibility_la
 import timetowish.shared.generated.resources.common_error_message
 
 interface ErrorScreen {
-    
+
     data class Cta(
         val text: String,
         val onClick: () -> Unit
@@ -40,7 +40,7 @@ fun ErrorScreen(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(TWTheme.spacings.space2)
-    ) { 
+    ) {
         //image
         TWImage(
             modifier = Modifier.size(ERROR_IMAGE_SIZE),

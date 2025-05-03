@@ -29,8 +29,8 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-include(":design-system")
-include(":core")
+include(":foundation:design-system")
+include(":foundation:core")
 include(":features:home")
 include(":shared")
-include(":navigation-routes")
+include(":foundation:navigation-routes")

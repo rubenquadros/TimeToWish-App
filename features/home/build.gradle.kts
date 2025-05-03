@@ -59,12 +59,12 @@ kotlin {
             implementation(libs.kotlinx.datetime)
 
             //core
-            implementation(projects.core)
-            implementation(projects.designSystem)
-            implementation(projects.navigationRoutes)
+            implementation(projects.foundation.core)
+            implementation(projects.foundation.designSystem)
+            implementation(projects.foundation.navigationRoutes)
 
             //shared
-            api(projects.shared)
+            implementation(projects.shared)
         }
     }
 }

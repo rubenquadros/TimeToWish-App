@@ -49,8 +49,8 @@ kotlin {
 
             implementation(libs.kotlinx.datetime)
 
-            implementation(projects.core)
-            implementation(projects.designSystem)
+            implementation(projects.foundation.core)
+            implementation(projects.foundation.designSystem)
         }
     }
 }

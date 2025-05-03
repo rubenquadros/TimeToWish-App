@@ -56,9 +56,9 @@ kotlin {
             commonMain.configure { kotlin.srcDirs("build/generated/ksp/metadata/commonMain/kotlin") }
 
             //core
-            implementation(projects.core)
-            implementation(projects.designSystem)
-            implementation(projects.navigationRoutes)
+            implementation(projects.foundation.core)
+            implementation(projects.foundation.designSystem)
+            implementation(projects.foundation.navigationRoutes)
 
             //featureModules
             implementation(projects.shared)
@@ -129,7 +129,7 @@ sqldelight {
             packageName.set("io.github.rubenquadros.timetowish")
             schemaOutputDirectory.set(file("${rootProject.projectDir}/db-schema"))
             generateAsync.set(true)
-            dependency(projects.core)
+            dependency(projects.foundation.core)
             dependency(projects.shared)
         }
     }
