@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import io.github.rubenquadros.timetowish.core.activity.ActivityHolder
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +14,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TWApp()
+        }.also {
+            ActivityHolder.setActivityContext(this)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityHolder.clear()
     }
 }
