@@ -14,6 +14,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -45,6 +46,7 @@ interface TWButton {
         data object AdjustRight : PaddingAdjustment
     }
 
+    @Immutable
     data class TextIcon(
         val imageReference: ImageReference,
         val position: TextIconPosition,
