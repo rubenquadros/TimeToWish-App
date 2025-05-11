@@ -41,3 +41,4 @@ google-services.json
 
 # CocoaPods
 iosApp/Pods
+iosApp/Configuration/

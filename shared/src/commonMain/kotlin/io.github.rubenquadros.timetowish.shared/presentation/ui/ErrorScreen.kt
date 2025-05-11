@@ -1,4 +1,4 @@
-package io.github.rubenquadros.timetowish.shared.ui
+package io.github.rubenquadros.timetowish.shared.presentation.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,6 +29,9 @@ interface ErrorScreen {
     )
 }
 
+/**
+ * @see [io.github.rubenquadros.timetowish.shared.ui.preview.ErrorScreenPreview]
+ */
 @Composable
 fun ErrorScreen(
     modifier: Modifier = Modifier,

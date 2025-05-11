@@ -31,18 +31,21 @@
         android:pathData="M35 11A2.5 2.5 0 0 1 30 11A2.5 2.5 0 0 1 35 11Z"
         android:strokeColor="#FFFFFF"
         android:strokeWidth="1"
+		android:strokeAlpha="0.54"
         android:strokeLineCap="round"
         android:strokeLineJoin="round" />
     <path
         android:pathData="M18 11A2.5 2.5 0 0 1 13 11A2.5 2.5 0 0 1 18 11Z"
         android:strokeColor="#FFFFFF"
         android:strokeWidth="1"
+		android:strokeAlpha="0.54"
         android:strokeLineCap="round"
         android:strokeLineJoin="round" />
     <path
         android:pathData="M7.5 5.5a2 2 0 0 0 -2 2v33a2 2 0 0 0 2 2h33a2 2 0 0 0 2 -2V7.5a2 2 0 0 0 -2 -2Z"
         android:strokeColor="#FFFFFF"
         android:strokeWidth="1"
+		android:strokeAlpha="0.54"
         android:strokeLineCap="round"
         android:strokeLineJoin="round" />
 </vector>

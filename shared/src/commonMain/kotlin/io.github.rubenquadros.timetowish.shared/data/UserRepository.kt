@@ -18,6 +18,8 @@ internal interface UserRepository {
     suspend fun getIsUserLoggedIn(): Boolean
 
     fun observeCurrentUser(): Flow<CurrentUser>
+
+    suspend fun saveUser(currentUser: CurrentUser)
 }
 
 @Single
@@ -34,5 +36,9 @@ internal class UserRepositoryImpl(
         return database.userQueries.getUser().asFlow().mapToOneNotNull(dispatcher).filterNotNull().map {
             it.toCurrentUser()
         }
+    }
+
+    override suspend fun saveUser(currentUser: CurrentUser) {
+        userSession.saveUser(currentUser)
     }
 }

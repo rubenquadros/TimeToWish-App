@@ -9,10 +9,11 @@ androidx-core-ktx = "1.15.0"
 androidx-espresso-core = "3.6.1"
 androidx-material = "1.2.1"
 androidx-splashscreen = "1.0.1"
+androidx-browser = "1.8.0"
 androidx-test-junit = "1.2.1"
 compose-multiplatform = "1.7.3"
 junit = "4.13.2"
-kotlin = "2.1.0"
+kotlin = "2.1.20-RC3"
 coil = "3.0.0-alpha10"
 okio = "3.9.1"
 androidx-compose = "1.7.8"
@@ -22,15 +23,15 @@ kotlinx-immutable-collections = "0.3.8"
 ktor = "3.0.3"
 kotlinx-serialization-plugin = "2.1.10"
 kotlinx-serialization = "1.8.1"
-ksp = "2.1.0-1.0.29"
+ksp = "2.1.20-2.0.1"
 koin = "4.0.3"
-koin-annotations = "2.0.0"
+koin-annotations = "2.0.1-Beta1"
 compose-navigation = "2.8.0-alpha11"
-compose-material-navigation = "1.7.0-beta02"
+compose-material-navigation = "1.8.0-beta02"
 compose-lifecycle = "2.9.0-alpha03"
 sqldelight = "2.0.2"
+google-credential = "1.5.0"
 google-id = "1.1.1"
-google-credentials = "1.5.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -41,7 +42,8 @@ androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 androidx-material = { group = "com.google.android.material3", name = "material3", version.ref = "androidx-material" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activityCompose" }
+androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "androidx-browser" }
 
 #compose-multiplatform
 compose-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
@@ -96,10 +98,10 @@ sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-exte
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-ios = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
 
-#google-credentials
-google-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "google-credentials" }
-google-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "google-credentials" }
-google-credentials-id =  { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "google-id" }
+#google auth
+google-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "google-credential" }
+google-credentials-play-services = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "google-credential" }
+google-credentials-id = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "google-id" }
 
 [bundles]
 coil = ["coil-image", "coil-compose-core", "coil-compose", "coil-network"]

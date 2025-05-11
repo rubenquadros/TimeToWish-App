@@ -31,6 +31,8 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.bundles.androidx.compose)
+            implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.browser)
         }
 
         commonMain.dependencies {

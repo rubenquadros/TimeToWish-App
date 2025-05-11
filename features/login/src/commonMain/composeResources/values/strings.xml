@@ -1,0 +1,21 @@
+<resources>
+	<string name="login_app_icon_accessibility_label">Login screen cake image</string>
+	<string name="login_title">Because “Belated” is so last year.</string>
+	<string name="login_description">Sign in to set reminders, write the perfect message, and be everyone’s favorite wisher.\nBecause showing you care should be effortless.</string>
+	<string name="login_google_cta">Continue with Google</string>
+	<string name="login_tnc">By signing in or creating an account, you agree with our Terms &amp; Conditions and Privacy Policy.</string>
+	<string name="login_copyright">© TimeToWish 2025</string>
+	<string name="login_loading_accessibility_label">Loading</string>
+	<string name="login_error_retry_cta">Retry</string>
+	<string name="login_loading">Signing you in...</string>
+	<string name="login_success">Successfully signed in!</string>
+	<string name="login_terms_title">You're in Control</string>
+	<string name="login_terms_subtitle">Our Terms and Privacy Policy explain how we work, what you can expect from us, and how your data is handled. Take a moment to review it.</string>
+	<string name="login_terms">Terms &amp; Conditions</string>
+	<string name="login_terms_accessibility_label">Terms</string>
+	<string name="login_privacy">Privacy Policy</string>
+	<string name="login_privacy_accessibility_label">Privacy</string>
+	<string name="login_policies_view_details_cta">View details</string>
+	<string name="login_validation_error">Oops! Something went wrong. Please try signing in again.</string>
+	<string name="login_error_info_accessibility_label">Info</string>
+</resources>

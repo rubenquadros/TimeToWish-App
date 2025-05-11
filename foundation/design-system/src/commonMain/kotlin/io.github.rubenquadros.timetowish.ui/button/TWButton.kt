@@ -5,19 +5,20 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonElevation
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.github.rubenquadros.timetowish.ui.TWTheme
@@ -45,10 +46,12 @@ interface TWButton {
         data object AdjustRight : PaddingAdjustment
     }
 
+    @Immutable
     data class TextIcon(
         val imageReference: ImageReference,
         val position: TextIconPosition,
-        val accessibilityLabel: String
+        val accessibilityLabel: String,
+        val tint: Color? = null
     )
 
     enum class TextIconPosition {
@@ -146,16 +149,18 @@ private fun ButtonIconAndTextContentInternal(
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(TWTheme.spacings.space1)
+        horizontalArrangement = Arrangement.spacedBy(TWTheme.spacings.space2)
     ) {
         if (textContent.icon?.position == TWButton.TextIconPosition.START) {
             TWImage(
-                modifier = Modifier.size(TWTheme.spacings.space6),
+                modifier = Modifier
+                    .size(TWTheme.spacings.space6)
+                    .clearAndSetSemantics {  }, //do not announce in talk back
                 imageReference = textContent.icon.imageReference,
                 accessibilityLabel = textContent.icon.accessibilityLabel,
                 tint = if (!isEnabled) {
                     colors.disabledContentColor
-                } else null
+                } else textContent.icon.tint
             )
 
             ButtonTextContentInternal(
@@ -217,47 +222,31 @@ private fun IconButtonInternal(
     val colors = getIconButtonColors(variant)
     val tint = getIconButtonTint(variant = variant, isEnabled = isEnabled)
 
-    when (variant) {
-        TWButton.Variant.Secondary -> {
-            OutlinedIconButton(
-                modifier = modifier,
-                enabled = isEnabled,
-                colors = colors,
-                border = getButtonBorder(variant = variant, isEnabled = isEnabled),
-                onClick = onClick
-            ) {
-                TWImage(
-                    imageReference = iconContent.imageReference,
-                    accessibilityLabel = iconContent.accessibilityLabel,
-                    tint = tint
+    OutlinedIconButton(
+        modifier = modifier.then(
+            if (variant is TWButton.Variant.Elevated) {
+                Modifier.shadow(
+                    elevation = TWTheme.elevations.level2,
+                    shape = TWTheme.shapes.full,
+                    ambientColor = TWTheme.colors.surfaceTint,
+                    spotColor = TWTheme.colors.surfaceTint
                 )
+            } else {
+                Modifier
             }
-        }
-        else -> {
-            IconButton(
-                modifier = modifier.then(
-                    if (variant is TWButton.Variant.Elevated) {
-                        Modifier.shadow(
-                            elevation = TWTheme.elevations.level2,
-                            shape = CircleShape,
-                            ambientColor = TWTheme.colors.surfaceTint,
-                            spotColor = TWTheme.colors.surfaceTint
-                        )
-                    } else {
-                        Modifier
-                    }
-                ),
-                enabled = isEnabled,
-                colors = colors,
-                onClick = onClick
-            ) {
-                TWImage(
-                    imageReference = iconContent.imageReference,
-                    accessibilityLabel = iconContent.accessibilityLabel,
-                    tint = tint
-                )
-            }
-        }
+        ),
+        enabled = isEnabled,
+        colors = colors,
+        border = getButtonBorder(variant = variant, isEnabled = isEnabled),
+        onClick = onClick,
+        shape = TWTheme.shapes.full
+    ) {
+        TWImage(
+            modifier = Modifier.clip(TWTheme.shapes.full),
+            imageReference = iconContent.imageReference,
+            accessibilityLabel = iconContent.accessibilityLabel,
+            tint = tint
+        )
     }
 }
 

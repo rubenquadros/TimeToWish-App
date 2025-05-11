@@ -8,6 +8,8 @@ import io.github.rubenquadros.timetowish.feature.home.domain.entity.HomeEntity
 import io.github.rubenquadros.timetowish.shared.domain.ObserveCurrentUserUseCase
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.zip
 import org.koin.core.annotation.Factory
 
@@ -19,16 +21,15 @@ internal class GetTodayEventAndProfileUseCaseImpl(
     private val getTodayEventsUseCase: GetTodayEventsUseCase
 ) : GetTodayEventAndProfileUseCase() {
     override fun execute(request: Unit): Flow<HomeEntity> {
-        val currentUserFlow: Flow<UseCaseResult<CurrentUser>> = getCurrentUserUseCase(Unit)
-
         val todayEventsFlow: Flow<UseCaseResult<List<Event>>> = getTodayEventsUseCase(Unit)
 
-        val homeEntityFlow: Flow<HomeEntity> = currentUserFlow.zip(todayEventsFlow) { currentUserResult, todayEventsResult ->
-            val profile = if (currentUserResult is UseCaseResult.Success) currentUserResult.data else null
+        val currentUserFlow: Flow<CurrentUser>? = getCurrentUserUseCase(Unit)
+
+        val homeEntityFlow: Flow<HomeEntity> = todayEventsFlow.combine(currentUserFlow?: emptyFlow()) { todayEventsResult, currentUser ->
             val todayEvents = if (todayEventsResult is UseCaseResult.Success) todayEventsResult.data else null
 
             HomeEntity(
-                currentUser = profile,
+                currentUser = currentUser,
                 todayEvents = todayEvents?.toImmutableList()
             )
         }

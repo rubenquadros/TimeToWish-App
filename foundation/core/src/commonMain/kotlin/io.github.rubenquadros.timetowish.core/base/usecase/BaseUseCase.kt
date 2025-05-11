@@ -6,7 +6,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 
 /**
  * Extend your UseCase classes with [UseCase] if you do not want to wrap your result with [UseCaseResult]
@@ -23,7 +22,7 @@ abstract class UseCase<in REQUEST, out RESPONSE> {
 }
 
 /**
- * Extend your UseCase classes with [BaseUseCase] for a single shot resposne
+ * Extend your UseCase classes with [BaseUseCase] for a single shot response
  * @see UseCaseResult
  */
 abstract class BaseUseCase<in REQUEST, out RESPONSE>(
@@ -58,34 +57,12 @@ abstract class BaseFlowUseCase<in REQUEST, out RESPONSE>(
                 currentCoroutineContext().ensureActive()
                 getUseCaseResultFromThrowable(exception)
             }
+
             emit(result)
         }.flowOn(dispatcher)
     }
 
     abstract suspend fun execute(request: REQUEST): RESPONSE
-}
-
-/**
- * Extend your UseCase with [BaseFlowResponseUseCase] when you are expecitng a [Flow] response from the data source
- * @see UseCaseResult
- */
-abstract class BaseFlowResponseUseCase<in REQUEST, out RESPONSE>(
-    open val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
-    operator fun invoke(request: REQUEST): Flow<UseCaseResult<RESPONSE>> {
-        return runCatching {
-            execute(request).map {
-                UseCaseResult.Success(it)
-            }
-        }.getOrElse { exception ->
-            flow {
-                currentCoroutineContext().ensureActive()
-                getUseCaseResultFromThrowable<RESPONSE>(exception)
-            }
-        }.flowOn(dispatcher)
-    }
-
-    abstract fun execute(request: REQUEST): Flow<RESPONSE>
 }
 
 private fun <DATA>getUseCaseResultFromThrowable(exception: Throwable): UseCaseResult<DATA> {

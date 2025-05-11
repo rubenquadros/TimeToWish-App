@@ -9,16 +9,30 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import io.github.rubenquadros.timetowish.feature.home.resources.Res
+import io.github.rubenquadros.timetowish.feature.home.resources.home_loading_accessibility_label
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import io.github.rubenquadros.timetowish.ui.loader.TWSkeletonLoader
+import org.jetbrains.compose.resources.stringResource
 
+/**
+ * @see [io.github.rubenquadros.timetowish.feature.home.ui.preview.HomeLoadingPreview]
+ *
+ */
 @Composable
 internal fun HomeScreenLoading() {
+    val a11yLabel = stringResource(Res.string.home_loading_accessibility_label)
+
     Column(
         modifier = Modifier
             .padding(TWTheme.spacings.space4)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .semantics(mergeDescendants = true) {
+                contentDescription = a11yLabel
+            },
         verticalArrangement = Arrangement.spacedBy(TWTheme.spacings.space4)
     ) {
         Row(

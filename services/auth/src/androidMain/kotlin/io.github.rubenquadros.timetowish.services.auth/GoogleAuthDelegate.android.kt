@@ -11,9 +11,9 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import io.github.rubenquadros.timetowish.core.activity.ActivityHolder
 
-actual class GoogleAuthDelegate actual constructor() {
+class GoogleAuthDelegate : Auth {
 
-    actual suspend fun login(clientId: String): SignInResult {
+    override suspend fun login(clientId: String, serverId: String): SignInResult {
         val request = GetCredentialRequest.Builder()
             .addCredentialOption(getGoogleSignInOption(clientId))
             .build()
@@ -36,7 +36,7 @@ actual class GoogleAuthDelegate actual constructor() {
     }
 
 
-    actual suspend fun logout(): SignOutResult {
+    override suspend fun logout(): SignOutResult {
         return ActivityHolder.getActivityContext()?.let { context ->
             val manager = CredentialManager.create(context)
 
@@ -79,3 +79,5 @@ actual class GoogleAuthDelegate actual constructor() {
         }
     }
 }
+
+actual fun getGoogleAuthDelegate(): Auth = GoogleAuthDelegate()

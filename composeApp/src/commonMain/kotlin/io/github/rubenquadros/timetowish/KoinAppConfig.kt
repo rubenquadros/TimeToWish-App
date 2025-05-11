@@ -10,5 +10,5 @@ expect fun koinAppConfig(): KoinConfiguration
 internal fun koinConfig() = koinConfiguration {
     includes(koinAppConfig())
     //All modules go here
-    modules(CommonModule().module, FeatureModule().module)
+    modules(CommonModule().module, FeatureModule().module, ServiceModule().module)
 }

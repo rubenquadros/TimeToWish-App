@@ -20,7 +20,10 @@ import io.github.rubenquadros.timetowish.ui.text.TWText
 import io.github.rubenquadros.timetowish.ui.text.TWTitle
 
 @Composable
-internal fun HomeGrid(modifier: Modifier = Modifier) {
+internal fun HomeGrid(
+    modifier: Modifier = Modifier,
+    onClick: (itemType: HomeGridItemType) -> Unit
+) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(TWTheme.spacings.space4),
@@ -31,16 +34,14 @@ internal fun HomeGrid(modifier: Modifier = Modifier) {
         ) {
             HomeGridItem(
                 modifier = Modifier.fillMaxSize().weight(1f),
-                itemType = HomeGridItemType.CALENDAR
-            ){
-                //do nothing
-            }
+                itemType = HomeGridItemType.CALENDAR,
+                onClick = { onClick(HomeGridItemType.CALENDAR) }
+            )
             HomeGridItem(
                 modifier = Modifier.fillMaxSize().weight(1f),
-                itemType = HomeGridItemType.CREATE_WISH
-            ){
-                //do nothing
-            }
+                itemType = HomeGridItemType.CREATE_WISH,
+                onClick = { onClick(HomeGridItemType.CREATE_WISH) }
+            )
         }
 
         Row(
@@ -49,16 +50,14 @@ internal fun HomeGrid(modifier: Modifier = Modifier) {
         ) {
             HomeGridItem(
                 modifier = Modifier.fillMaxSize().weight(1f),
-                itemType = HomeGridItemType.GREETING_CARD
-            ) {
-                //do nothing
-            }
+                itemType = HomeGridItemType.GREETING_CARD,
+                onClick = { onClick(HomeGridItemType.GREETING_CARD) }
+            )
             HomeGridItem(
                 modifier = Modifier.fillMaxSize().weight(1f),
-                itemType = HomeGridItemType.ADD_EVENT
-            ) {
-                //do nothing
-            }
+                itemType = HomeGridItemType.ADD_EVENT,
+                onClick = { onClick(HomeGridItemType.ADD_EVENT) }
+            )
         }
     }
 }

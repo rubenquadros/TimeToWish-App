@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
-import io.github.rubenquadros.timetowish.shared.ui.ErrorScreen
+import io.github.rubenquadros.timetowish.shared.presentation.ui.ErrorScreen
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import io.github.rubenquadros.timetowish.ui.preview.TWPreview
 import io.github.rubenquadros.timetowish.ui.preview.TWPreviewTheme
