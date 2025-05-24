@@ -1,8 +1,9 @@
 package io.github.rubenquadros.timetowish.feature.home.presentation
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.rubenquadros.timetowish.core.base.viewmodel.BaseViewModel
+import io.github.rubenquadros.timetowish.core.base.SavedStateContainer
 import io.github.rubenquadros.timetowish.feature.home.domain.entity.HomeEntity
 import io.github.rubenquadros.timetowish.feature.home.domain.usecase.GetTodayEventAndProfileUseCase
 import io.github.rubenquadros.timetowish.feature.home.presentation.ui.grid.HomeGridItemType
@@ -19,22 +20,19 @@ internal class HomeViewModel(
     savedStateHandle: SavedStateHandle,
     private val getTodayEventAndProfileUseCase: GetTodayEventAndProfileUseCase,
     private val loginDelegate: LoginDelegate
-) : BaseViewModel<HomeUiState, HomeEvent>(
-    savedStateHandle = savedStateHandle,
-    initialState = HomeUiState.Loading
-) {
+) : ViewModel() {
 
-    override fun loadInitialData(): Flow<HomeUiState> {
-        val homeEntityFlow: Flow<HomeEntity>? = getTodayEventAndProfileUseCase(Unit)
+    private val homeContainer = SavedStateContainer<HomeUiState, HomeEvent>(
+        scope = viewModelScope,
+        savedStateHandle = savedStateHandle,
+        kSerializer = HomeUiState.serializer(),
+        initialState = HomeUiState.Loading,
+        loadInitialData = ::loadInitialData,
 
-        return homeEntityFlow?.map { homeEntity ->
-            if (homeEntity.todayEvents == null && homeEntity.currentUser == null) {
-                HomeUiState.Error
-            } else {
-                HomeUiState.Data(homeEntity)
-            }
-        } ?: flow { emit(HomeUiState.Error) }
-    }
+    )
+
+    val uiState by homeContainer::uiState
+    val uiEvent by homeContainer::uiEvent
 
     fun onCardClick(itemType: HomeGridItemType) {
         when (itemType) {
@@ -45,7 +43,7 @@ internal class HomeViewModel(
                             //updateEvent()
                         },
                         onNotLoggedIn = {
-                            updateEvent(HomeEvent.Navigate(LoginScreen))
+                            homeContainer.updateEvent(HomeEvent.Navigate(LoginScreen))
                         }
                     )
                 }
@@ -55,5 +53,19 @@ internal class HomeViewModel(
                 //updateEvent()
             }
         }
+    }
+
+    fun reloadInitialData() = homeContainer.reloadInitialData()
+
+    private fun loadInitialData(): Flow<HomeUiState> {
+        val homeEntityFlow: Flow<HomeEntity>? = getTodayEventAndProfileUseCase(Unit)
+
+        return homeEntityFlow?.map { homeEntity ->
+            if (homeEntity.todayEvents == null && homeEntity.currentUser == null) {
+                HomeUiState.Error
+            } else {
+                HomeUiState.Data(homeEntity)
+            }
+        } ?: flow { emit(HomeUiState.Error) }
     }
 }

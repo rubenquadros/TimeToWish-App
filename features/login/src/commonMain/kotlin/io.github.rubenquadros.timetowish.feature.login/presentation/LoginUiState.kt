@@ -6,20 +6,26 @@ import io.github.rubenquadros.timetowish.feature.login.resources.login_google
 import io.github.rubenquadros.timetowish.feature.login.resources.login_google_cta
 import io.github.rubenquadros.timetowish.feature.login.resources.login_loading
 import io.github.rubenquadros.timetowish.feature.login.resources.login_success
+import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 
+@Serializable
 internal sealed interface LoginUiState {
+    @Serializable
     data object InitialTokenLoading : LoginUiState
 
+    @Serializable
     data object TokenLoadingError : LoginUiState
 
+    @Serializable
     data class TokenLoaded(
         val pages: LoginPages,
         val loginState: LoginState = LoginState()
     ) : LoginUiState
 }
 
+@Serializable
 internal data class LoginState(
     val showLoginLoading: Boolean = false,
     val showLoginError: Boolean = false,

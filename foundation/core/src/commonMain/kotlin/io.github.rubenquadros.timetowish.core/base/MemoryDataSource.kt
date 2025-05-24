@@ -1,4 +1,4 @@
-package io.github.rubenquadros.timetowish.core.base.memory
+package io.github.rubenquadros.timetowish.core.base
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

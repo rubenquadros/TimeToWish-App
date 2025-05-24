@@ -1,6 +1,6 @@
 package io.github.rubenquadros.timetowish.shared.domain
 
-import io.github.rubenquadros.timetowish.core.base.usecase.UseCase
+import io.github.rubenquadros.timetowish.core.base.UseCase
 import io.github.rubenquadros.timetowish.core.session.CurrentUser
 import io.github.rubenquadros.timetowish.shared.data.UserRepository
 import kotlinx.coroutines.flow.Flow

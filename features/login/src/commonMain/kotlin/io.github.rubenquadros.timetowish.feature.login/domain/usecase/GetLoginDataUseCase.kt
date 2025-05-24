@@ -1,6 +1,6 @@
 package io.github.rubenquadros.timetowish.feature.login.domain.usecase
 
-import io.github.rubenquadros.timetowish.core.base.usecase.BaseFlowUseCase
+import io.github.rubenquadros.timetowish.core.base.BaseFlowUseCase
 import io.github.rubenquadros.timetowish.feature.login.domain.entity.LoginData
 import io.github.rubenquadros.timetowish.feature.login.domain.repository.LoginRepository
 import org.koin.core.annotation.Factory

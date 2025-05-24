@@ -44,6 +44,8 @@ kotlin {
             implementation(libs.bundles.coil)
 
             implementation(libs.sqldelight.coroutines)
+
+            implementation(libs.kotlinx.immutable.collections)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)

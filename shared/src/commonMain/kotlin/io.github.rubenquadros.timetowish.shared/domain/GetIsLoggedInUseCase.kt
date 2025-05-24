@@ -1,6 +1,6 @@
 package io.github.rubenquadros.timetowish.shared.domain
 
-import io.github.rubenquadros.timetowish.core.base.usecase.BaseUseCase
+import io.github.rubenquadros.timetowish.core.base.BaseUseCase
 import io.github.rubenquadros.timetowish.shared.data.UserRepository
 import org.koin.core.annotation.Factory
 

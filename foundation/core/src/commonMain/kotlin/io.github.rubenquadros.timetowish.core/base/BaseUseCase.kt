@@ -1,4 +1,4 @@
-package io.github.rubenquadros.timetowish.core.base.usecase
+package io.github.rubenquadros.timetowish.core.base
 
 import io.github.rubenquadros.timetowish.core.api.ApiException
 import io.ktor.client.network.sockets.SocketTimeoutException
@@ -29,13 +29,12 @@ abstract class BaseUseCase<in REQUEST, out RESPONSE>(
     open val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
     suspend operator fun invoke(request: REQUEST): UseCaseResult<RESPONSE> {
-        return runCatching {
+        return try {
             withContext(dispatcher) {
                 UseCaseResult.Success(execute(request))
             }
-        }.getOrElse { exception ->
-            currentCoroutineContext().ensureActive()
-            getUseCaseResultFromThrowable(exception)
+        } catch (e: Exception) {
+            getUseCaseResultFromThrowable(e)
         }
     }
 
@@ -51,11 +50,10 @@ abstract class BaseFlowUseCase<in REQUEST, out RESPONSE>(
 ) {
     operator fun invoke(request: REQUEST): Flow<UseCaseResult<RESPONSE>> {
         return flow {
-            val result = runCatching {
+            val result = try {
                 UseCaseResult.Success(execute(request))
-            }.getOrElse { exception ->
-                currentCoroutineContext().ensureActive()
-                getUseCaseResultFromThrowable(exception)
+            } catch (e: Exception) {
+                getUseCaseResultFromThrowable(e)
             }
 
             emit(result)
@@ -72,4 +70,11 @@ private fun <DATA>getUseCaseResultFromThrowable(exception: Throwable): UseCaseRe
         is ApiException -> UseCaseResult.Error(message = exception.message)
         else -> UseCaseResult.Unknown
     }
+}
+
+sealed interface UseCaseResult<out DATA> {
+    data class Success<DATA>(val data: DATA): UseCaseResult<DATA>
+    data object NetworkError: UseCaseResult<Nothing>
+    data class Error(val message: String): UseCaseResult<Nothing>
+    data object Unknown: UseCaseResult<Nothing>
 }

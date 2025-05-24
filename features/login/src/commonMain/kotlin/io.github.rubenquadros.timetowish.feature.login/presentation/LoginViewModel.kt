@@ -1,9 +1,10 @@
 package io.github.rubenquadros.timetowish.feature.login.presentation
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.rubenquadros.timetowish.core.base.usecase.UseCaseResult
-import io.github.rubenquadros.timetowish.core.base.viewmodel.BaseViewModel
+import io.github.rubenquadros.timetowish.core.base.SavedStateContainer
+import io.github.rubenquadros.timetowish.core.base.UseCaseResult
 import io.github.rubenquadros.timetowish.core.session.getPlatform
 import io.github.rubenquadros.timetowish.feature.login.domain.entity.LoginData
 import io.github.rubenquadros.timetowish.feature.login.domain.entity.LoginKeys
@@ -24,24 +25,19 @@ internal class LoginViewModel(
     private val getLoginDataUseCase: GetLoginDataUseCase,
     private val validateLoginAndSaveUserUseCase: ValidateLoginAndSaveUserUseCase,
     private val googleLoginDelegate: Auth
-) : BaseViewModel<LoginUiState, LoginEvent>(
-    savedStateHandle = savedStateHandle,
-    initialState = LoginUiState.InitialTokenLoading
-) {
+) : ViewModel() {
     private lateinit var _loginKeys: LoginKeys
 
-    override fun loadInitialData(): Flow<LoginUiState> {
-        return getLoginDataUseCase(Unit)
-            .onEach { result ->
-                result.updateLoginKeys()
-            }.map { result ->
-                if (result is UseCaseResult.Success) {
-                    LoginUiState.TokenLoaded(pages = result.data.pages)
-                } else {
-                    LoginUiState.TokenLoadingError
-                }
-            }
-    }
+    private val loginContainer = SavedStateContainer<LoginUiState, LoginEvent>(
+        scope = viewModelScope,
+        savedStateHandle = savedStateHandle,
+        kSerializer = LoginUiState.serializer(),
+        initialState = LoginUiState.InitialTokenLoading,
+        loadInitialData = ::loadInitialData
+    )
+
+    val uiState by loginContainer::uiState
+    val uiEvent by loginContainer::uiEvent
 
     fun login() {
         viewModelScope.launch {
@@ -66,7 +62,7 @@ internal class LoginViewModel(
                     //update the state
                     updateLoginSuccessState()
                     delay(SUCCESS_FEEDBACK)
-                    updateEvent(LoginEvent.LoginSuccess)
+                    loginContainer.updateEvent(LoginEvent.LoginSuccess)
                 } else {
                     updateLoginFailState()
                 }
@@ -76,8 +72,23 @@ internal class LoginViewModel(
         }
     }
 
+    fun reloadInitialData() = loginContainer.reloadInitialData()
+
+    private fun loadInitialData(): Flow<LoginUiState> {
+        return getLoginDataUseCase(Unit)
+            .onEach { result ->
+                result.updateLoginKeys()
+            }.map { result ->
+                if (result is UseCaseResult.Success) {
+                    LoginUiState.TokenLoaded(pages = result.data.pages)
+                } else {
+                    LoginUiState.TokenLoadingError
+                }
+            }
+    }
+
     private fun resetLoginState() {
-        updateState { state ->
+        loginContainer.updateState { state ->
             val loginState = (state as? LoginUiState.TokenLoaded)?.loginState
 
             loginState?.let {
@@ -93,7 +104,7 @@ internal class LoginViewModel(
     }
 
     private fun updateLoginLoadingState() {
-        updateState { state ->
+        loginContainer.updateState { state ->
             val loginState = (state as? LoginUiState.TokenLoaded)?.loginState
 
             loginState?.let {
@@ -109,7 +120,7 @@ internal class LoginViewModel(
     }
 
     private fun updateLoginFailState() {
-        updateState { state ->
+        loginContainer.updateState { state ->
             val loginState = (state as? LoginUiState.TokenLoaded)?.loginState
             loginState?.let {
                 state.copy(
@@ -124,7 +135,7 @@ internal class LoginViewModel(
     }
 
     private fun updateLoginSuccessState() {
-        updateState { state ->
+        loginContainer.updateState { state ->
             val loginState = (state as? LoginUiState.TokenLoaded)?.loginState
             loginState?.let {
                 state.copy(

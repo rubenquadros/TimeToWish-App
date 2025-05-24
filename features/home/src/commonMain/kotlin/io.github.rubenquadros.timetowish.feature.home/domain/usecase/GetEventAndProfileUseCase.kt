@@ -1,7 +1,7 @@
 package io.github.rubenquadros.timetowish.feature.home.domain.usecase
 
-import io.github.rubenquadros.timetowish.core.base.usecase.UseCase
-import io.github.rubenquadros.timetowish.core.base.usecase.UseCaseResult
+import io.github.rubenquadros.timetowish.core.base.UseCase
+import io.github.rubenquadros.timetowish.core.base.UseCaseResult
 import io.github.rubenquadros.timetowish.core.session.CurrentUser
 import io.github.rubenquadros.timetowish.feature.home.domain.entity.Event
 import io.github.rubenquadros.timetowish.feature.home.domain.entity.HomeEntity
@@ -10,7 +10,6 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.zip
 import org.koin.core.annotation.Factory
 
 internal abstract class GetTodayEventAndProfileUseCase : UseCase<Unit, Flow<HomeEntity>>()

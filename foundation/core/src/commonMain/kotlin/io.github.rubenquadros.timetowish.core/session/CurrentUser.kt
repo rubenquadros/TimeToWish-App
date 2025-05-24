@@ -1,7 +1,9 @@
 package io.github.rubenquadros.timetowish.core.session
 
 import io.github.rubenquadros.timetowish.core.User
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CurrentUser(
     val id: String,
     val name: String,

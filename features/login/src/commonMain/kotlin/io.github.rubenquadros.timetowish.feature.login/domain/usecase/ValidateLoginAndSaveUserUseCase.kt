@@ -1,8 +1,8 @@
 package io.github.rubenquadros.timetowish.feature.login.domain.usecase
 
 import io.github.rubenquadros.timetowish.core.api.ApiException
-import io.github.rubenquadros.timetowish.core.base.usecase.BaseUseCase
-import io.github.rubenquadros.timetowish.core.base.usecase.UseCaseResult
+import io.github.rubenquadros.timetowish.core.base.BaseUseCase
+import io.github.rubenquadros.timetowish.core.base.UseCaseResult
 import io.github.rubenquadros.timetowish.shared.domain.SaveLoggedInUserDataUseCase
 import org.koin.core.annotation.Factory
 

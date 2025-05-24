@@ -1,6 +1,6 @@
 package io.github.rubenquadros.timetowish.shared.delegate
 
-import io.github.rubenquadros.timetowish.core.base.usecase.UseCaseResult
+import io.github.rubenquadros.timetowish.core.base.UseCaseResult
 import io.github.rubenquadros.timetowish.shared.domain.GetIsLoggedInUseCase
 import org.koin.core.annotation.Factory
 

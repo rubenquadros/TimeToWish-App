@@ -1,7 +1,7 @@
 package io.github.rubenquadros.timetowish.feature.home.domain.usecase
 
-import io.github.rubenquadros.timetowish.core.base.usecase.BaseFlowUseCase
-import io.github.rubenquadros.timetowish.core.base.usecase.UseCaseResult
+import io.github.rubenquadros.timetowish.core.base.BaseFlowUseCase
+import io.github.rubenquadros.timetowish.core.base.UseCaseResult
 import io.github.rubenquadros.timetowish.feature.home.domain.entity.Event
 import io.github.rubenquadros.timetowish.feature.home.domain.repository.HomeRepository
 import io.github.rubenquadros.timetowish.shared.domain.GetIsLoggedInUseCase

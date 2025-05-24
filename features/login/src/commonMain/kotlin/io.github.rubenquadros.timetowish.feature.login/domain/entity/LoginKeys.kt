@@ -1,5 +1,7 @@
 package io.github.rubenquadros.timetowish.feature.login.domain.entity
 
+import kotlinx.serialization.Serializable
+
 internal data class LoginData(
     val keys: LoginKeys,
     val pages: LoginPages
@@ -15,6 +17,7 @@ internal data class PlatformKey(
     val server: String
 )
 
+@Serializable
 internal data class LoginPages(
     val termsAndConditions: String,
     val privacyPolicy: String

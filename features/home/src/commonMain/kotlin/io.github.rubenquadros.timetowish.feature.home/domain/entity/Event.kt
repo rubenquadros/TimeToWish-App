@@ -1,5 +1,8 @@
 package io.github.rubenquadros.timetowish.feature.home.domain.entity
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 internal data class Event(
     val id: String,
     val userId: String,
