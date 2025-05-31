@@ -1,31 +1,10 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
-
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.multiplatformModule)
     alias(libs.plugins.kotlinCocoapods)
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.kspModule)
 }
 
 kotlin {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "auth"
-            isStatic = true
-        }
-    }
-
     cocoapods {
         summary = "This is the auth module"
         homepage = "Link to the Auth Module homepage"
@@ -58,42 +37,5 @@ kotlin {
             //core
             implementation(projects.foundation.core)
         }
-    }
-}
-
-// KSP Tasks
-dependencies {
-    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
-}
-
-// WORKAROUND: ADD this dependsOn("kspCommonMainKotlinMetadata") instead of above dependencies
-tasks.withType<KotlinCompilationTask<*>>().configureEach {
-    if (name != "kspCommonMainKotlinMetadata") {
-        dependsOn("kspCommonMainKotlinMetadata")
-    }
-}
-
-afterEvaluate {
-    tasks.filter {
-        it.name.contains("SourcesJar", true)
-    }.forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-}
-
-ksp {
-    arg("KOIN_CONFIG_CHECK","true")
-    arg("KOIN_DEFAULT_MODULE","false")
-}
-
-android {
-    namespace = "io.github.rubenquadros.timetowish.services.auth"
-    compileSdk = 35
-    defaultConfig {
-        minSdk = 26
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 }
