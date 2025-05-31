@@ -34,6 +34,13 @@ google-credential = "1.5.0"
 google-id = "1.1.1"
 
 [libraries]
+#gradle plugins
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+compose-gradle = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose-multiplatform" }
+ksp-gradle = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
+sqldelight-gradle = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -118,3 +125,10 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinx-serialization-plugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+
+#Custom convention plugins
+multiplatformModule = { id = "io.github.rubenquadros.timetowish.multiplatform" }
+composeModule = { id = "io.github.rubenquadros.timetowish.compose" }
+kspModule = { id = "io.github.rubenquadros.timetowish.ksp" }
+dbModule = { id = "io.github.rubenquadros.timetowish.db" }
+featureModule = { id = "io.github.rubenquadros.timetowish.feature" }

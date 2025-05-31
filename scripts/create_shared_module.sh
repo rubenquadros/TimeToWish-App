@@ -87,7 +87,6 @@ if [ "$use_database" = "true" ]; then
 else
   cp "$base_path"/build.gradle.kts "$module_dir"/build.gradle.kts
 fi
-sed -i '' "s|moduleName|$module_name|g" build.gradle.kts
 sed -i '' "s|modulePackage|$package_name|g" build.gradle.kts
 
 #create commonMain and commonTest

@@ -28,6 +28,7 @@ dependencyResolutionManagement {
     }
 }
 
+includeBuild("build-plugins")
 include(":composeApp")
 include(":foundation:design-system")
 include(":foundation:core")
