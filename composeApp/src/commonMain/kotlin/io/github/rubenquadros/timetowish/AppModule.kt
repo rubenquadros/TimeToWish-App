@@ -1,6 +1,7 @@
 package io.github.rubenquadros.timetowish
 
 import io.github.rubenquadros.timetowish.core.di.TWCoreModule
+import io.github.rubenquadros.timetowish.feature.generatewish.di.GenerateWishModule
 import io.github.rubenquadros.timetowish.feature.home.di.HomeModule
 import io.github.rubenquadros.timetowish.feature.login.di.LoginModule
 import io.github.rubenquadros.timetowish.services.auth.AuthModule
@@ -13,7 +14,7 @@ import org.koin.core.annotation.Module
 class CommonModule
 
 
-@Module(includes = [HomeModule::class, LoginModule::class])
+@Module(includes = [HomeModule::class, LoginModule::class, GenerateWishModule::class])
 @ComponentScan
 class FeatureModule
 

@@ -76,6 +76,7 @@ kotlin {
 
             //featureModules
             implementation(projects.shared)
+            implementation(projects.features.generateWish)
             implementation(projects.features.login)
             implementation(projects.features.home)
 

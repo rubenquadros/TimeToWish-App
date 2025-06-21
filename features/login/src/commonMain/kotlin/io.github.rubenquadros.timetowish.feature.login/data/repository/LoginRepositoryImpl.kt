@@ -2,7 +2,7 @@ package io.github.rubenquadros.timetowish.feature.login.data.repository
 
 import io.github.rubenquadros.timetowish.core.api.ApiManager
 import io.github.rubenquadros.timetowish.core.api.body
-import io.github.rubenquadros.timetowish.feature.login.data.datasource.LoginDataMemoryDataSource
+import io.github.rubenquadros.timetowish.core.base.MemoryDataSource
 import io.github.rubenquadros.timetowish.feature.login.data.mapper.toLoggedInUser
 import io.github.rubenquadros.timetowish.feature.login.data.mapper.toLoginData
 import io.github.rubenquadros.timetowish.feature.login.data.model.GetLoginDataResponse
@@ -14,14 +14,12 @@ import io.github.rubenquadros.timetowish.feature.login.domain.repository.LoginRe
 import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
-import io.ktor.http.ContentType
 import io.ktor.http.appendPathSegments
-import io.ktor.http.contentType
 import org.koin.core.annotation.Single
 
 @Single
 internal class LoginRepositoryImpl(
-    private val loginKeysDataSource: LoginDataMemoryDataSource,
+    private val loginKeysDataSource: MemoryDataSource<GetLoginDataResponse>,
     private val apiManager: ApiManager
 ) : LoginRepository {
     override suspend fun getLoginData(): LoginData {

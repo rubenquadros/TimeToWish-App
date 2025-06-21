@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
@@ -214,25 +215,31 @@ fun TWTheme(
 object TWTheme {
     val spacings: TWSpacings
         @Composable
+        @ReadOnlyComposable
         get() = LocalSpacings.current
 
     val elevations: TWElevations
         @Composable
+        @ReadOnlyComposable
         get() = LocalElevations.current
 
     val borders: TWBorders
         @Composable
+        @ReadOnlyComposable
         get() = LocalBorders.current
 
     val shapes: TWShapes
         @Composable
+        @ReadOnlyComposable
         get() = LocalShapes.current
 
     val colors: TWColors
         @Composable
+        @ReadOnlyComposable
         get() = LocalColors.current
 
     val typography: TWTypography
         @Composable
+        @ReadOnlyComposable
         get() = LocalTypography.current
 }

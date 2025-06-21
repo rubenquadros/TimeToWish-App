@@ -21,7 +21,7 @@ import io.github.rubenquadros.timetowish.navigation.routes.NavigateTo
 import io.github.rubenquadros.timetowish.navigation.routes.withDefaultOptions
 import io.github.rubenquadros.timetowish.shared.presentation.ui.ErrorScreen
 import io.github.rubenquadros.timetowish.shared.presentation.ui.enterFadeInTransition
-import io.github.rubenquadros.timetowish.shared.presentation.ui.existFadeOutTransition
+import io.github.rubenquadros.timetowish.shared.presentation.ui.exitFadeOutTransition
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -55,7 +55,7 @@ internal fun HomeScreen(
         AnimatedVisibility(
             visible = uiState is HomeUiState.Loading,
             enter = enterFadeInTransition,
-            exit = existFadeOutTransition
+            exit = exitFadeOutTransition
         ) {
             HomeScreenLoading()
         }
@@ -73,7 +73,7 @@ internal fun HomeScreen(
         AnimatedVisibility(
             visible = uiState is HomeUiState.Error,
             enter = enterFadeInTransition,
-            exit = existFadeOutTransition
+            exit = exitFadeOutTransition
         ) {
             ErrorScreen(
                 modifier = Modifier.fillMaxSize(),

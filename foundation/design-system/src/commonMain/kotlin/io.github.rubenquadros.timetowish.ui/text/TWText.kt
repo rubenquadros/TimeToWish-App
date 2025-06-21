@@ -19,7 +19,9 @@ fun TWText(
     textColor: Color = TWTheme.colors.onSurface,
     textStyle: TextStyle = TWTheme.typography.bodyLarge,
     textAlign: TextAlign = TextAlign.Start,
-    fontWeight: FontWeight = FontWeight.Normal
+    fontWeight: FontWeight = FontWeight.Normal,
+    minLines: Int = 1,
+    maxLines: Int = Int.MAX_VALUE,
 ) {
     Text(
         modifier = modifier,
@@ -27,6 +29,8 @@ fun TWText(
         color = textColor,
         style = textStyle,
         textAlign = textAlign,
-        fontWeight = fontWeight
+        fontWeight = fontWeight,
+        minLines = minLines,
+        maxLines = maxLines
     )
 }

@@ -7,6 +7,7 @@ import io.github.rubenquadros.timetowish.core.base.SavedStateContainer
 import io.github.rubenquadros.timetowish.feature.home.domain.entity.HomeEntity
 import io.github.rubenquadros.timetowish.feature.home.domain.usecase.GetTodayEventAndProfileUseCase
 import io.github.rubenquadros.timetowish.feature.home.presentation.ui.grid.HomeGridItemType
+import io.github.rubenquadros.timetowish.navigation.routes.generatewish.GenerateWishScreen
 import io.github.rubenquadros.timetowish.navigation.routes.login.LoginRoute.LoginScreen
 import io.github.rubenquadros.timetowish.shared.delegate.LoginDelegate
 import kotlinx.coroutines.flow.Flow
@@ -50,7 +51,7 @@ internal class HomeViewModel(
             }
 
             HomeGridItemType.GREETING_CARD, HomeGridItemType.CREATE_WISH -> {
-                //updateEvent()
+                homeContainer.updateEvent(HomeEvent.Navigate(GenerateWishScreen))
             }
         }
     }

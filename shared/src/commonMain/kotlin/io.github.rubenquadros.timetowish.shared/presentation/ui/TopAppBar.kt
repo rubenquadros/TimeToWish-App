@@ -1,6 +1,7 @@
 package io.github.rubenquadros.timetowish.shared.presentation.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -8,7 +9,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -37,13 +37,6 @@ interface TWTopAppBar {
 
     enum class TitlePosition {
         START, CENTER;
-
-        internal fun getAlignment(): Alignment.Horizontal {
-            return when (this) {
-                START -> Alignment.Start
-                else -> Alignment.CenterHorizontally
-            }
-        }
     }
 }
 
@@ -56,7 +49,8 @@ interface TWTopAppBar {
 fun TWTopAppBar(
     modifier: Modifier = Modifier,
     title: TWTopAppBar.Title? = null,
-    icon: TWTopAppBar.Icon? = null
+    icon: TWTopAppBar.Icon? = null,
+    actions: @Composable (RowScope.() -> Unit) = {}
 ) {
 
     if (title != null && title.position == TWTopAppBar.TitlePosition.CENTER) {
@@ -69,7 +63,8 @@ fun TWTopAppBar(
                     NavIcon(icon)
                 }
             },
-            colors = getTopAppBarColors()
+            actions = actions,
+            colors = getTopAppBarColors(),
         )
     } else {
         TopAppBar(
@@ -84,7 +79,8 @@ fun TWTopAppBar(
                     NavIcon(icon)
                 }
             },
-            colors = getTopAppBarColors()
+            actions = actions,
+            colors = getTopAppBarColors(),
         )
     }
 }
