@@ -1,6 +1,7 @@
 package io.github.rubenquadros.timetowish.shared.presentation.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -48,7 +49,8 @@ interface TWTopAppBar {
 fun TWTopAppBar(
     modifier: Modifier = Modifier,
     title: TWTopAppBar.Title? = null,
-    icon: TWTopAppBar.Icon? = null
+    icon: TWTopAppBar.Icon? = null,
+    actions: @Composable (RowScope.() -> Unit) = {}
 ) {
 
     if (title != null && title.position == TWTopAppBar.TitlePosition.CENTER) {
@@ -61,7 +63,8 @@ fun TWTopAppBar(
                     NavIcon(icon)
                 }
             },
-            colors = getTopAppBarColors()
+            actions = actions,
+            colors = getTopAppBarColors(),
         )
     } else {
         TopAppBar(
@@ -76,7 +79,8 @@ fun TWTopAppBar(
                     NavIcon(icon)
                 }
             },
-            colors = getTopAppBarColors()
+            actions = actions,
+            colors = getTopAppBarColors(),
         )
     }
 }

@@ -17,7 +17,7 @@ import io.github.rubenquadros.timetowish.navigation.routes.NavigateTo
 import io.github.rubenquadros.timetowish.navigation.routes.login.LoginRoute.TermsAndPrivacy
 import io.github.rubenquadros.timetowish.navigation.routes.withDefaultOptions
 import io.github.rubenquadros.timetowish.shared.presentation.ui.enterFadeInTransition
-import io.github.rubenquadros.timetowish.shared.presentation.ui.existFadeOutTransition
+import io.github.rubenquadros.timetowish.shared.presentation.ui.exitFadeOutTransition
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -51,7 +51,7 @@ internal fun LoginScreen(
         AnimatedVisibility(
             visible = uiState is LoginUiState.InitialTokenLoading,
             enter = enterFadeInTransition,
-            exit = existFadeOutTransition
+            exit = exitFadeOutTransition
         ) {
             LoginScreenLoading()
         }
@@ -59,7 +59,7 @@ internal fun LoginScreen(
         AnimatedVisibility(
             visible = uiState is LoginUiState.TokenLoadingError,
             enter = enterFadeInTransition,
-            exit = existFadeOutTransition
+            exit = exitFadeOutTransition
         ) {
             LoginScreenError(
                 navigateUp = navigateUp,
@@ -70,7 +70,7 @@ internal fun LoginScreen(
         AnimatedVisibility(
             visible = uiState is LoginUiState.TokenLoaded,
             enter = enterFadeInTransition,
-            exit = existFadeOutTransition
+            exit = exitFadeOutTransition
         ) {
             LoginContent(
                 loginState = (uiState as LoginUiState.TokenLoaded).loginState,

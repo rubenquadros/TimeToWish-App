@@ -14,6 +14,7 @@ import coil3.compose.setSingletonImageLoaderFactory
 import io.github.rubenquadros.timetowish.core.imageLoader.getImageLoader
 import io.github.rubenquadros.timetowish.feature.home.homeScreen
 import io.github.rubenquadros.timetowish.feature.login.loginScreen
+import io.github.rubenquadros.timetowish.feature.generatewish.generateWishScreen
 import io.github.rubenquadros.timetowish.navigation.routes.home.HomeScreen
 import io.github.rubenquadros.timetowish.navigation.routes.safeNavigate
 import io.github.rubenquadros.timetowish.ui.TWTheme
@@ -50,6 +51,8 @@ fun TWApp() {
                     loginScreen(navigateUp = { navController.navigateUp() }) { destination, navOptionsBuilder ->
                         navController.safeNavigate(destination, navOptionsBuilder)
                     }
+
+                    generateWishScreen(navigateUp = { navController.navigateUp() })
                 }
             }
         }

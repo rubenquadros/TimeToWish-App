@@ -40,7 +40,7 @@ import io.github.rubenquadros.timetowish.shared.presentation.ui.Loader
 import io.github.rubenquadros.timetowish.shared.presentation.ui.TWTopAppBar
 import io.github.rubenquadros.timetowish.shared.presentation.ui.backIcon
 import io.github.rubenquadros.timetowish.shared.presentation.ui.enterFadeInTransition
-import io.github.rubenquadros.timetowish.shared.presentation.ui.existFadeOutTransition
+import io.github.rubenquadros.timetowish.shared.presentation.ui.exitFadeOutTransition
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import io.github.rubenquadros.timetowish.ui.banner.TWBanner
 import io.github.rubenquadros.timetowish.ui.button.TWButton
@@ -187,7 +187,7 @@ private fun LoginLoading(shouldShow: Boolean) {
             ),
         visible = shouldShow,
         enter = enterFadeInTransition,
-        exit = existFadeOutTransition
+        exit = exitFadeOutTransition
     ) {
         Loader(modifier = Modifier.fillMaxSize())
     }

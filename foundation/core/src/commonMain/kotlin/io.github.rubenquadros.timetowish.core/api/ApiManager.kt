@@ -59,7 +59,7 @@ internal class ApiManagerImpl(private val userSession: UserSession) : ApiManager
     }
 
     private fun HttpClient.addResponseInterceptor() {
-        responsePipeline.intercept(phase = HttpResponsePipeline.Transform) { (info, body) ->
+        responsePipeline.intercept(phase = HttpResponsePipeline.Receive) { (info, body) ->
             if (context.response.status != HttpStatusCode.OK) {
                 //parse error response and throw exception
                 val response = body as ApiError

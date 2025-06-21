@@ -1,0 +1,10 @@
+<resources>
+	<string name="generate_wish_input_hint">Craft a message...</string>
+	<string name="generate_wish_powered_by">Powered by Google Gemini</string>
+	<string name="generate_wish_send_query_cta_accessibility_label">Generate wish</string>
+	<string name="generate_wish_empty_state">You bring the heart, I’ll bring the words. Start typing!</string>
+	<string name="generate_wish_new_chat_accessibility_label">Start a new chat</string>
+	<string name="generate_wish_copy_cta_accessibility_label">Copy message</string>
+	<string name="generate_wish_model_error">Something went wrong. Please try again.</string>
+	<string name="generate_wish_retry_cta_accessibility_label">Retry</string>
+</resources>
