@@ -14,29 +14,33 @@
         android:strokeLineCap="round"
         android:pathData="M15 4.69632H9" />
     <path
-        android:strokeColor="#FFFFFF"
-        android:strokeAlpha="0.54"
+        android:fillColor="#2C1515"
+        android:fillAlpha="0.54"
+        android:strokeColor="#2C1515"
         android:strokeWidth="0.5"
         android:strokeLineJoin="round"
         android:strokeMiterLimit="10"
         android:strokeLineCap="round"
         android:pathData="M19 4.69632H21C21.28 4.69632 21.5 5.00995 21.5 5.40913V21.0909C21.5 21.49 21.28 21.8037 21 21.8037H19.37H14.62H9.37H4.62H3C2.72 21.8037 2.5 21.49 2.5 21.0909V5.40913C2.5 5.00995 2.72 4.69632 3 4.69632H5" />
     <path
-        android:strokeColor="#FFB3B3"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.54"
         android:strokeWidth="0.5"
         android:strokeLineJoin="round"
         android:strokeMiterLimit="10"
         android:strokeLineCap="round"
         android:pathData="M4.5 8.69632H19.5" />
     <path
-        android:strokeColor="#FFB3B3"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.54"
         android:strokeWidth="0.5"
         android:strokeLineJoin="round"
         android:strokeMiterLimit="10"
         android:strokeLineCap="round"
         android:pathData="M17 3.19632V6.19632" />
     <path
-        android:strokeColor="#FFB3B3"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.54"
         android:strokeWidth="0.5"
         android:strokeLineJoin="round"
         android:strokeMiterLimit="10"

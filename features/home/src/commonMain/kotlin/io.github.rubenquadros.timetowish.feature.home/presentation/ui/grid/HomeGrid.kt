@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import io.github.rubenquadros.timetowish.ui.card.TWCard
 import io.github.rubenquadros.timetowish.ui.image.TWImage
@@ -88,13 +89,15 @@ private fun HomeGridItem(
             TWTitle(
                 modifier = Modifier.fillMaxWidth(),
                 title = gridItemUi.title,
-                textColor = TWTheme.colors.onSurface
+                textColor = TWTheme.colors.onSurface,
+                textAlign = TextAlign.Center
             )
             TWText(
                 modifier = Modifier.fillMaxWidth(),
                 text = gridItemUi.description,
                 textColor = TWTheme.colors.surfaceTint,
-                textStyle = TWTheme.typography.bodyMedium
+                textStyle = TWTheme.typography.bodyMedium,
+                textAlign = TextAlign.Center
             )
         }
     }

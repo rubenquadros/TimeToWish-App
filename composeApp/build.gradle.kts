@@ -75,6 +75,7 @@ kotlin {
             implementation(projects.foundation.navigationRoutes)
 
             //featureModules
+            implementation(projects.features.landing)
             implementation(projects.shared)
             implementation(projects.features.generateWish)
             implementation(projects.features.login)
@@ -153,5 +154,5 @@ sqldelight {
             dependency(projects.foundation.core)
             dependency(projects.shared)
         }
-    }
+        }
 }

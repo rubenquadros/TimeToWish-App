@@ -51,7 +51,7 @@ internal fun GenerateWishScreen(
     //TODO::Migrate to Clipboard once all the targets have the functionality
     val clipboard = LocalClipboardManager.current
 
-    //handle one off events
+    //handle one-off events
     LaunchedEffect(Unit) {
         generateWishViewModel.uiEvent.collect { event ->
             when (event) {

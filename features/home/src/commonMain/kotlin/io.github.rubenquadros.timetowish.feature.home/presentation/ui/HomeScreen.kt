@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -32,7 +31,7 @@ internal fun HomeScreen(
     navigateTo: NavigateTo
 ) {
 
-    //handle one off events
+    //handle one-off events
     LaunchedEffect(Unit) {
         homeViewModel.uiEvent.collect { event ->
             when (event) {
@@ -47,7 +46,6 @@ internal fun HomeScreen(
 
     Box(
         modifier = Modifier
-            .safeDrawingPadding()
             .fillMaxSize()
             .background(TWTheme.colors.surface)
             .verticalScroll(rememberScrollState())

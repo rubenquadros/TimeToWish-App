@@ -12,10 +12,10 @@ import androidx.navigation.compose.rememberNavController
 import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
 import io.github.rubenquadros.timetowish.core.imageLoader.getImageLoader
-import io.github.rubenquadros.timetowish.feature.home.homeScreen
-import io.github.rubenquadros.timetowish.feature.login.loginScreen
 import io.github.rubenquadros.timetowish.feature.generatewish.generateWishScreen
-import io.github.rubenquadros.timetowish.navigation.routes.home.HomeScreen
+import io.github.rubenquadros.timetowish.feature.landing.landingScreen
+import io.github.rubenquadros.timetowish.feature.login.loginScreen
+import io.github.rubenquadros.timetowish.navigation.routes.landing.LandingScreen
 import io.github.rubenquadros.timetowish.navigation.routes.safeNavigate
 import io.github.rubenquadros.timetowish.ui.TWTheme
 import org.koin.compose.KoinApplication
@@ -42,9 +42,9 @@ fun TWApp() {
             ) {
                 NavHost(
                     navController = navController,
-                    startDestination = HomeScreen
+                    startDestination = LandingScreen
                 ) {
-                    homeScreen { destination, navOptionsBuilder ->
+                    landingScreen { destination, navOptionsBuilder ->
                         navController.safeNavigate(destination, navOptionsBuilder)
                     }
 

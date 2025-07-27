@@ -64,19 +64,20 @@ internal fun HomeContent(
         )
 
         EventsToday(
-            modifier = Modifier.padding(horizontal = TWTheme.spacings.space2).fillMaxWidth(),
+            modifier = Modifier.padding(horizontal = TWTheme.spacings.space4).fillMaxWidth(),
             todayEvents = homeEntity.todayEvents ?: persistentListOf()
         )
 
         HomeGrid(
-            modifier = Modifier.padding(horizontal = TWTheme.spacings.space2).fillMaxWidth(),
+            modifier = Modifier.padding(horizontal = TWTheme.spacings.space4).fillMaxWidth(),
             onClick = onCardClick
         )
 
         TWText(
-            modifier = Modifier.padding(start = TWTheme.spacings.space4),
+            modifier = Modifier.fillMaxWidth(),
             text = stringResource(Res.string.home_tech_credit),
-            textColor = TWTheme.colors.onSurface
+            textColor = TWTheme.colors.onSurface,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -130,7 +131,7 @@ private fun EventsToday(
 ) {
     TWCard(
         modifier = modifier,
-        variant = TWCard.Variant.Default,
+        variant = TWCard.Variant.Elevated,
         cardColors = TWCardDefaults.cardColors(
             containerColor = TWTheme.colors.primaryContainer
         ),

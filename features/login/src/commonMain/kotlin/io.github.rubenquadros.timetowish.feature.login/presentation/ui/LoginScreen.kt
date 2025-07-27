@@ -28,7 +28,7 @@ internal fun LoginScreen(
     navigateUp: () -> Unit,
 ) {
 
-    //handle one off events
+    //handle one-off events
     LaunchedEffect(Unit) {
         loginViewModel.uiEvent.collect { event ->
             when (event) {
