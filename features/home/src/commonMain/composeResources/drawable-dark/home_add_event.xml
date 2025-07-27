@@ -2,33 +2,20 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="800dp"
     android:height="800dp"
-    android:viewportWidth="48"
-    android:viewportHeight="48">
+    android:viewportWidth="64"
+    android:viewportHeight="64">
 
     <path
         android:strokeColor="#FFFFFF"
-		android:strokeAlpha="0.54"
-        android:strokeWidth="1"
+        android:strokeAlpha="0.54"
+        android:strokeWidth="1.4"
         android:strokeLineJoin="round"
         android:strokeLineCap="round"
-        android:pathData="M35.9648,41.8625l8.4128,2.3611-2.5744-8.1708" />
+        android:pathData="M 32 8 C 45.2548339959 8 56 18.7451660041 56 32 C 56 45.2548339959 45.2548339959 56 32 56 C 18.7451660041 56 8 45.2548339959 8 32 C 8 18.7451660041 18.7451660041 8 32 8 Z" />
     <path
         android:strokeColor="#FFB3B3"
-        android:strokeWidth="1"
+        android:strokeWidth="1.4"
         android:strokeLineJoin="round"
         android:strokeLineCap="round"
-        android:pathData="M9.5,24h29" />
-    <path
-        android:strokeColor="#FFB3B3"
-        android:strokeWidth="1"
-        android:strokeLineJoin="round"
-        android:strokeLineCap="round"
-        android:pathData="M24,9.5v29" />
-    <path
-        android:strokeColor="#FFFFFF"
-		android:strokeAlpha="0.54"
-        android:strokeWidth="1"
-        android:strokeLineJoin="round"
-        android:strokeLineCap="round"
-        android:pathData="M35.9648,41.8625a21.4994,21.4994,0,1,1,5.8384-5.81" />
+        android:pathData="M20 32h24M32 20v24" />
 </vector>
