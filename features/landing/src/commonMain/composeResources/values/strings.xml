@@ -1,0 +1,7 @@
+<resources>
+	<string name="landing_home">Home</string>
+	<string name="landing_calendar">Your calendar</string>
+	<string name="landing_add_event">Add a new reminder</string>
+	<string name="landing_create_wish">Create a wish</string>
+	<string name="landing_greeting_card">Find a greeting card</string>
+</resources>
