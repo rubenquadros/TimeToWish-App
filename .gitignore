@@ -42,3 +42,5 @@ google-services.json
 # CocoaPods
 iosApp/Pods
 iosApp/Configuration/
+iosApp/iosApp.xcodeproj/*
+iosApp/iosApp.xcworkspace/*
